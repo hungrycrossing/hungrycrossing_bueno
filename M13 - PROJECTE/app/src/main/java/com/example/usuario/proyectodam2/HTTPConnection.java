@@ -18,7 +18,7 @@ import java.net.URL;
 public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
     String login;
     String password;
-    private int status;
+    public int status;
     public  HTTPConnection(String log, String pass)
     {
         login = log;
@@ -81,7 +81,7 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
         super.onPostExecute(jsonObject);
 
         try {
-            jsonObject.getString("estado");
+            status=jsonObject.getInt("estado");
         } catch (JSONException e) {
             e.printStackTrace();
 

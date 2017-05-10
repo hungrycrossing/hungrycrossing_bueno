@@ -46,17 +46,9 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
                 username=etUsername.getText().toString();
                 URL url = null;
                 connection= new HTTPConnection(username,pass);
+                connection.execute();
+                status=connection.status;
 
-               /* try {
-                    url = new URL("http://hungrycrossing.000webhostapp/ComprobarLogin.php?nombre=" + username + "&pass=" + pass );
-                    HttpURLConnection urlConnection = null;
-                    urlConnection = (HttpURLConnection)url.openConnection();
-                    status = urlConnection.getResponseCode();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
 
                 if(status==1)//cas correcte
                 {
@@ -65,12 +57,12 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
                     //pasem a la pagina principal
 
                 }
-                else
+                else //introduce user o psw que no tocan
                 {
                     error.setVisibility(View.VISIBLE);
                 }
             }
-            if(v==btnRegister)
+            if(v==btnRegister) //lleva al activity de registrar
             {
                 Intent register_screen= new  Intent(getApplicationContext(), register_screen.class);
                 startActivity(register_screen);
