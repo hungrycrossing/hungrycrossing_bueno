@@ -20,7 +20,7 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
     private String pass,username;
     TextView error;
     private int status;
-
+    HTTPConnection connection;
 
 
         @Override
@@ -45,7 +45,9 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
                 pass=etPssw.getText().toString();
                 username=etUsername.getText().toString();
                 URL url = null;
-                try {
+                connection= new HTTPConnection(username,pass);
+
+               /* try {
                     url = new URL("http://hungrycrossing.000webhostapp/ComprobarLogin.php?nombre=" + username + "&pass=" + pass );
                     HttpURLConnection urlConnection = null;
                     urlConnection = (HttpURLConnection)url.openConnection();
@@ -54,7 +56,7 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 if(status==1)//cas correcte
                 {
