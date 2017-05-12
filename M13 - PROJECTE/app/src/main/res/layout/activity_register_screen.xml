@@ -123,15 +123,16 @@ Password:"
             <EditText
                 android:layout_width="170dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="30dp" android:id="@+id/etConfirmPass"
+                android:layout_marginTop="30dp"
+                android:id="@+id/etConfirmPass"
                 android:hint="Introduce Password"
                 android:background="@drawable/border"
+                android:inputType="textPassword"
                 android:textSize="16dp"
                 />
             <EditText
                 android:layout_width="170dp"
                 android:layout_height="35dp"
-
                 android:layout_marginTop="15dp"
                 android:id="@+id/etMail"
                 android:hint="Introduce Password"
@@ -151,6 +152,7 @@ Password:"
         android:layout_centerHorizontal="true"
         android:background="@drawable/button"
         android:textColor="#FFF"
+        android:id="@+id/btnSign"
 
         />
 
