@@ -15,9 +15,10 @@ import java.net.URL;
 /**
  * Created by Bernat on 09/05/2017.
  */
-public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
+public class HTTPConnection extends AsyncTask<Void,Void,JSONObject>  {
     String login;
     String password;
+    public int state;
     public int status;
     public  HTTPConnection(String log, String pass)
     {
@@ -33,7 +34,7 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
         JSONObject json=null;
         URL url = null;
         try {
-            url = new URL("http://hungrycrossing.000webhostapp/ComprobarLogin.php?nombre=" + login + "&pass=" + password );
+            url = new URL("http://hungrycrossing.000webhostapp.com/ComprobarLogin.php?login=" + login + "&psw=" + password );
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection)url.openConnection();
             status = urlConnection.getResponseCode();
@@ -43,7 +44,7 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
             urlConnection.setReadTimeout(10000 /* milliseconds */);
             urlConnection.setConnectTimeout(15000 /* milliseconds */);
 
-            urlConnection.setDoOutput(true);
+            //urlConnection.setDoOutput(true);
 
             urlConnection.connect();
 
@@ -81,13 +82,21 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
         super.onPostExecute(jsonObject);
 
         try {
-            status=jsonObject.getInt("estado");
+
+            state=jsonObject.getInt("estado");
+
         } catch (JSONException e) {
             e.printStackTrace();
 
         }
+
         //es retorna el jsonObject de forma estatica (no tinc ni P idea)
 
+    }
+    public int getState()
+    {
+
+        return state;
     }
 
 }

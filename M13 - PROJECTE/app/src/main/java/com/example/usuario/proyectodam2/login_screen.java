@@ -44,12 +44,21 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
             {
                 pass=etPssw.getText().toString();
                 username=etUsername.getText().toString();
-                URL url = null;
-                connection= new HTTPConnection(username,pass);
-                connection.execute();
-                status=connection.status;
 
 
+                try {
+                    connection= new HTTPConnection(username,pass);
+                    Thread.sleep(5000);
+                    connection.execute();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+
+               // status=connection.state;
+                //status=connection.getState();IMPORTANT ARREGLAR-HO
+                status=1;
                 if(status==1)//cas correcte
                 {
                     Intent main_screen= new  Intent(getApplicationContext(), main_screen.class);
