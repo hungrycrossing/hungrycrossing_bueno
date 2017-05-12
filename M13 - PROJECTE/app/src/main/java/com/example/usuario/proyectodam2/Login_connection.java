@@ -1,6 +1,7 @@
 package com.example.usuario.proyectodam2;
 
 import android.os.AsyncTask;
+import android.util.JsonReader;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -14,18 +15,34 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by Bernat on 09/05/2017.
+ * Created by Bernat on 12/05/2017.
  */
-public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
+public class Login_connection extends AsyncTask<Void,Void,JSONObject>{
     String login;
     String password;
     private int state;
     public int status;
-    public  HTTPConnection(String log, String pass)
+    public  Login_connection(String log, String pass)
     {
         login = log;
         password = pass;
 
+    }
+    @Override
+    protected void onPostExecute(JSONObject jsonObject) {
+        super.onPostExecute(jsonObject);
+
+        super.onPostExecute(jsonObject);
+        Log.d("Avis","Inici pst execute ");
+        try {
+
+            state=jsonObject.getInt("estado");
+
+            login_screen.status=state;
+        } catch (JSONException e) {
+            e.printStackTrace();
+
+        }
     }
 
     @Override
@@ -74,28 +91,6 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
             e.printStackTrace();
         }
         Log.d("Avis","Ha acabat de fer el do in background");
-        return null;
+        return json;
     }
-
-
-    @Override
-    protected void onPostExecute(JSONObject jsonObject) {
-        super.onPostExecute(jsonObject);
-        Log.d("Avis","Inici pst execute ");
-        try {
-
-            state=jsonObject.getInt("estado");
-
-            login_screen.status=state;
-        } catch (JSONException e) {
-            e.printStackTrace();
-
-        }
-    }
-
-    @Override
-    protected void onProgressUpdate(Void... values) {
-        super.onProgressUpdate(values);
-    }
-
 }

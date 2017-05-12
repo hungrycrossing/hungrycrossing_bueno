@@ -19,8 +19,8 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
     private EditText etPssw;
     private String pass,username;
     TextView error;
-    private int status;
-    HTTPConnection connection;
+    public static int status;
+    Login_connection connection;
 
 
         @Override
@@ -40,42 +40,48 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
 
         @Override
         public void onClick(View v) {
-            if(v==btLog)
-            {
-                pass=etPssw.getText().toString();
-                username=etUsername.getText().toString();
+            if(v==btLog) {
+
+                pass = etPssw.getText().toString();
+                username = etUsername.getText().toString();
 
 
-                try {
-                    connection= new HTTPConnection(username,pass);
-                    Thread.sleep(5000);
+                    connection = new Login_connection(username, pass);
+
                     connection.execute();
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    status=1;
+                    /*while (status != 1 && status!=2)
+                    {
+
+                    }*(
+                /*{
+                  status=connection.getState();   //Amb aixo bloquejo la pantalla fins que l'httpconnection retorni el reusltat
+                }*/
+
+
+
+                    if (status == 1)//cas correcte
+                    {
+                        Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
+                        startActivity(main_screen);
+                        //pasem a la pagina principal
+
+                    } else //introduce user o psw que no tocan
+                    {
+                        error.setVisibility(View.VISIBLE);
+                    }
                 }
-
-
-               // status=connection.state;
-                //status=connection.getState();IMPORTANT ARREGLAR-HO
-                status=1;
-                if(status==1)//cas correcte
+                if (v == btnRegister) //lleva al activity de registrar
                 {
-                    Intent main_screen= new  Intent(getApplicationContext(), main_screen.class);
-                    startActivity(main_screen);
-                    //pasem a la pagina principal
+                    Intent register_screen = new Intent(getApplicationContext(), register_screen.class);
+                    startActivity(register_screen);
+                }
 
-                }
-                else //introduce user o psw que no tocan
-                {
-                    error.setVisibility(View.VISIBLE);
-                }
-            }
-            if(v==btnRegister) //lleva al activity de registrar
-            {
-                Intent register_screen= new  Intent(getApplicationContext(), register_screen.class);
-                startActivity(register_screen);
-            }
         }
 
 }

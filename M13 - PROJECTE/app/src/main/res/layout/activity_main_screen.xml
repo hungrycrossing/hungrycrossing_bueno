@@ -48,7 +48,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/button"
-        android:text="Filtros"
+        android:text="Filters"
         android:id="@+id/btnFiltros"
         />
     <ScrollView
