@@ -140,7 +140,19 @@ Password:"
                 android:textSize="16dp"
                 />
         </LinearLayout>
+
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearregister"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="ERROR"
+        android:visibility="invisible"
+        android:id="@+id/tvErrorReg"
+
+        />
 
     <Button
         android:layout_width="100dp"
