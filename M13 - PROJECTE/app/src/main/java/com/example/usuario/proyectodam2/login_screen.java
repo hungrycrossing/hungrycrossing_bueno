@@ -32,8 +32,8 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
             btnRegister=(Button) (findViewById(R.id.btnRegister));
             btnRegister.setOnClickListener(this);
 
-            etUsername=(EditText)(findViewById(R.id.etUsername));
-            etPssw=(EditText)(findViewById(R.id.etPassword));
+            etUsername=(EditText)(findViewById(R.id.etUsernameLogin));
+            etPssw=(EditText)(findViewById(R.id.etPasswordLogin));
             error=(TextView)(findViewById(R.id.tvErrorLogin));
 
         }

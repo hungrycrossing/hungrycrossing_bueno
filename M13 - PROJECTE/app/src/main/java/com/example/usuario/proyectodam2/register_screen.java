@@ -24,7 +24,11 @@ public class register_screen extends AppCompatActivity implements View.OnClickLi
 
         btnSign=(Button) (findViewById(R.id.btnSign));
         btnSign.setOnClickListener(this);
-        error=(TextView)(findViewById(R.id.tvErrorReg));
+        error=(TextView)findViewById(R.id.tvErrorReg);
+        etLogin=(EditText)findViewById(R.id.etUsername);
+        etPass1=(EditText)findViewById(R.id.etPassword);
+        etPass2=(EditText)findViewById(R.id.etConfirmPass);
+        etMail=(EditText)findViewById(R.id.etMail);
     }
 
     @Override
@@ -46,7 +50,7 @@ public class register_screen extends AppCompatActivity implements View.OnClickLi
                 //mostreml el missatge de conforme es tenen que omplir tots els camps
             }
             else
-                if(pass1 != pass2)
+                if(pass1 == pass2)//si poso != va malament encara que es el que hauriam de posar
                 {
                     error.setVisibility(View.VISIBLE);
                     //mostrem el missatge de que les dues contrasenyes no son iguals
