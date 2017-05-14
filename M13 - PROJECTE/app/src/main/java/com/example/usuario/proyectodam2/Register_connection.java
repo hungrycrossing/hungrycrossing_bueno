@@ -21,14 +21,15 @@ import java.net.URL;
 
 public class Register_connection extends AsyncTask<Void,Void,JSONObject> {
     int status, state;
-    String mail,password,login,nom;
+    String mail,password,login,nom,cp;
 
-    public Register_connection(String mail, String pass, String login, String nom)
+    public Register_connection(String mail, String pass, String login, String nom, String cp)
     {
         this.mail=mail;
         this.password=pass;
         this.login=login;
         this.nom=nom;
+        this.cp=cp;
     }
 
     @Override
@@ -38,7 +39,7 @@ public class Register_connection extends AsyncTask<Void,Void,JSONObject> {
 
         URL url = null;
         try {
-            url = new URL("http://hungrycrossing.000webhostapp.com/Inserir_Usuaris.php?mail=" + mail + "&pssw" + password +"&state=0&login="+login+"&nom="+nom );
+            url = new URL("http://hungrycrossing.000webhostapp.com/Inserir_Usuaris.php?mail=" + mail + "&pssw" + password +"&state=0&login="+login+"&nom="+nom+"&CP="+cp );
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection)url.openConnection();
             status = urlConnection.getResponseCode();

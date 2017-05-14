@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 public class register_screen extends AppCompatActivity implements View.OnClickListener {
     private Button btnSign;
-    private EditText etLogin, etPass1,etPass2, etMail;
-    private String login, pass1, pass2, mail;
+    private EditText etLogin, etPass1,etPass2, etMail, etCp, etNom;
+    private String login, pass1, pass2, mail, cp,nom;
     private Register_connection register;
     private TextView error;
     @Override
@@ -25,6 +25,13 @@ public class register_screen extends AppCompatActivity implements View.OnClickLi
         btnSign=(Button) (findViewById(R.id.btnSign));
         btnSign.setOnClickListener(this);
         error=(TextView)(findViewById(R.id.tvErrorReg));
+
+        etLogin=(EditText)(findViewById(R.id.etUsername));
+        etPass1=(EditText)(findViewById(R.id.etPassword));
+        etPass2=(EditText)(findViewById(R.id.etConfirmPass));
+        etMail=(EditText)(findViewById(R.id.etMail));
+        etCp=(EditText)(findViewById(R.id.etCP));
+        etNom=(EditText)(findViewById(R.id.etName));
     }
 
     @Override
@@ -37,24 +44,34 @@ public class register_screen extends AppCompatActivity implements View.OnClickLi
             pass2=etPass2.getText().toString();
             login=etLogin.getText().toString();
             mail=etMail.getText().toString();
+            nom=etNom.getText().toString();
+            cp=etCp.getText().toString();
 
 
-
-            if(pass1=="" || pass2=="" || login=="" || mail=="")
+            if(pass1=="" || pass2=="" || login=="" || mail=="" || cp=="" ||nom=="")
             {
+                error.setText("You must fill all the fields");
                 error.setVisibility(View.VISIBLE);
                 //mostreml el missatge de conforme es tenen que omplir tots els camps
             }
             else
                 if(pass1 != pass2)
                 {
+                    error.setText("Passwords don't match");
                     error.setVisibility(View.VISIBLE);
                     //mostrem el missatge de que les dues contrasenyes no son iguals
                 }
                 else
+                    if(cp.length()!=5)
+                    {
+                        error.setText("Write a correct Postal Code");
+                        error.setVisibility(View.VISIBLE);
+                        //mostrem el missatge de que les dues contrasenyes no son iguals
+                    }
+                else
 
                     {
-                        register=new Register_connection(mail,pass1,login,"nombre");
+                        register=new Register_connection(mail,pass1,login,nom,cp);
                         register.execute();
                         status=register.state;
                         if (status == 1)//cas correcte
@@ -89,6 +106,7 @@ public class register_screen extends AppCompatActivity implements View.OnClickLi
 
                         } else if(status==2)//introduce user o psw que no tocan
                         {
+                            error.setText("ERROR");
                             error.setVisibility(View.VISIBLE);
                         }
                     }
