@@ -11,6 +11,8 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 public class register_screen extends AppCompatActivity implements View.OnClickListener {
     private Button btnSign;
     private EditText etLogin, etPass1,etPass2, etMail, etCp, etNom;
@@ -56,14 +58,18 @@ public class register_screen extends AppCompatActivity implements View.OnClickLi
             cp=etCp.getText().toString();
 
 
-            if(pass1=="" || pass2=="" || login=="" || mail=="" || cp=="" ||nom=="")
+            if(Objects.equals(pass1, "") || Objects.equals(pass2, "") || Objects.equals(login, "") || Objects.equals(mail, "") || Objects.equals(cp, "") || Objects.equals(nom, ""))
             {
                 error.setText("You must fill all the fields");
                 error.setVisibility(View.VISIBLE);
                 //mostreml el missatge de conforme es tenen que omplir tots els camps
             }
             else
+<<<<<<< HEAD
                 if(pass1 == pass2)//si poso != va malament encara que es el que hauriam de posar
+=======
+                if(!Objects.equals(pass1, pass2))
+>>>>>>> origin/master
                 {
                     error.setText("Passwords don't match");
                     error.setVisibility(View.VISIBLE);
@@ -84,7 +90,6 @@ public class register_screen extends AppCompatActivity implements View.OnClickLi
                         status=register.state;
                         if (status == 1)//cas correcte
                         {
-
                             final Dialog dialog = new Dialog(this);
                             dialog.setContentView(R.layout.mailenviat_dialog);
                             dialog.setTitle("");
@@ -106,7 +111,6 @@ public class register_screen extends AppCompatActivity implements View.OnClickLi
                                     finish();
                                 }
                             });
-
                             dialog.show();
                             //se abriria un aviso conforome se ha enviado el mail y cuando le demos a aceptar nos llevaria a la
                             //pagina del login
