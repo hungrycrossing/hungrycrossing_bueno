@@ -27,7 +27,7 @@ public class enviarMail extends AsyncTask<Void,Void,JSONObject> {
     protected JSONObject doInBackground(Void... voids) {
         URL url = null;
         try {
-            url = new URL("http://hungrycrossing.000webhostapp.com/MailConfirmacio.php?mail=" + mail + "&nom=" + nom);
+            url = new URL("http://hungrycrossing.000webhostapp.com/mail.php?mail=" + mail + "&nom=" + nom);
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection) url.openConnection();
             status = urlConnection.getResponseCode();
