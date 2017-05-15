@@ -18,84 +18,126 @@ tools:context="com.example.usuario.proyectodam2.Fragment_FilterDialog">
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="30px" />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_gravity="left"
-    android:id="@+id/zona"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titol"
+        android:id="@+id/layout1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:id="@+id/zona"
 
-    android:layout_height="wrap_content"
-    android:paddingTop="0px"
-    android:layout_marginLeft="20px"
-    android:textSize="40px"
-    android:text="Zona: "
-    android:layout_below="@+id/titol"
-    android:layout_marginTop="20px"
-    />
-<ListView
-    android:layout_width="200px"
-    android:layout_height="60px"
-    android:layout_toRightOf="@+id/zona"
-    android:layout_below="@+id/titol"
-    android:layout_marginTop="15px"
-    android:id="@+id/lv1">
+            android:layout_height="wrap_content"
+            android:paddingTop="0px"
+            android:layout_marginLeft="20px"
+            android:textSize="40px"
+            android:text="Zona: "
+            android:layout_below="@+id/titol"
+            android:layout_marginTop="20px"
+            />
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="60px"
+            android:layout_toRightOf="@+id/zona"
+            android:layout_below="@+id/titol"
 
-</ListView>
+            android:id="@+id/lv1">
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_gravity="left"
-    android:id="@+id/tipos"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/zona"
-    android:layout_marginTop="30px"
-    android:layout_marginLeft="20px"
-    android:textSize="40px"
-    android:text="Specialities: "
+        </ListView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout2"
+        android:layout_below="@+id/layout1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:id="@+id/tipos"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/zona"
+            android:layout_marginTop="30px"
+            android:layout_marginLeft="20px"
+            android:textSize="40px"
+            android:text="Specialities: "
 
 
-    />
-<ListView
-    android:layout_width="200px"
-    android:layout_height="60px"
-    android:layout_toRightOf="@+id/tipos"
-    android:layout_below="@+id/zona"
-    android:layout_marginTop="20px"
+            />
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="60px"
+            android:layout_toRightOf="@+id/tipos"
+            android:layout_below="@+id/zona"
 
-    android:id="@+id/lv2">
 
-</ListView>
+            android:id="@+id/lv2">
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_gravity="left"
-    android:id="@+id/precio"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/tipos"
-    android:layout_marginLeft="20px"
-    android:layout_marginTop="30px"
-    android:textSize="40px"
-    android:text="Rating: "
-    />
+        </ListView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout3"
+        android:layout_below="@+id/layout2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:id="@+id/ciutats"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/zona"
+            android:layout_marginTop="30px"
+            android:layout_marginLeft="20px"
+            android:textSize="40px"
+            android:text="City: "
 
-<RatingBar
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/rBar1"
 
-    android:layout_marginLeft="20px"
-    android:layout_marginTop="40px"
+            />
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="60px"
+            android:layout_toRightOf="@+id/tipos"
+            android:id="@+id/lv3"/>
 
-    android:numStars="5"
-    android:layout_toRightOf="@id/precio"
-    android:layout_below="@+id/tipos"
-    />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout4"
+        android:layout_below="@+id/layout3">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="left"
+            android:id="@+id/precio"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="30px"
+            android:textSize="40px"
+            android:text="Rating: "
+            />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rBar1"
+
+            android:layout_marginLeft="20px"
+
+
+            android:numStars="5"
+            android:layout_toRightOf="@id/precio"
+            android:layout_below="@+id/tipos"
+            />
+    </LinearLayout>
 <Button
     android:layout_width="200px"
     android:layout_height="70px"
     android:layout_gravity="center"
     android:text="Filtrar"
     android:id="@+id/btFiltrarJa"
-    android:layout_below="@+id/rBar1"
+    android:layout_below="@+id/layout4"
     android:background="@drawable/button"
     android:layout_marginBottom="10px"
     android:layout_marginTop="20px"
