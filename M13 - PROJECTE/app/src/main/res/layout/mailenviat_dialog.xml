@@ -13,7 +13,7 @@
         android:textSize="50px"
         android:text="confirmation email has been successfully sent to your email address
 
-        Confirm and login"
+   Confirm and login"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"

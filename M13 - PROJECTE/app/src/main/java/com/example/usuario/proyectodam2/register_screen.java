@@ -26,6 +26,13 @@ public class register_screen extends AppCompatActivity implements View.OnClickLi
 
         btnSign=(Button) (findViewById(R.id.btnSign));
         btnSign.setOnClickListener(this);
+<<<<<<< HEAD
+        error=(TextView)findViewById(R.id.tvErrorReg);
+        etLogin=(EditText)findViewById(R.id.etUsername);
+        etPass1=(EditText)findViewById(R.id.etPassword);
+        etPass2=(EditText)findViewById(R.id.etConfirmPass);
+        etMail=(EditText)findViewById(R.id.etMail);
+=======
         error=(TextView)(findViewById(R.id.tvErrorReg));
 
         etLogin=(EditText)(findViewById(R.id.etUsername));
@@ -34,6 +41,7 @@ public class register_screen extends AppCompatActivity implements View.OnClickLi
         etMail=(EditText)(findViewById(R.id.etMail));
         etCp=(EditText)(findViewById(R.id.etCP));
         etNom=(EditText)(findViewById(R.id.etName));
+>>>>>>> origin/master
     }
 
     @Override
@@ -57,7 +65,11 @@ public class register_screen extends AppCompatActivity implements View.OnClickLi
                 //mostreml el missatge de conforme es tenen que omplir tots els camps
             }
             else
+<<<<<<< HEAD
+                if(pass1 == pass2)//si poso != va malament encara que es el que hauriam de posar
+=======
                 if(!Objects.equals(pass1, pass2))
+>>>>>>> origin/master
                 {
                     error.setText("Passwords don't match");
                     error.setVisibility(View.VISIBLE);

@@ -34,9 +34,10 @@
             android:layout_height="35dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
-
+            android:textColor="#000"
             android:id="@+id/etSearch"
-            android:paddingLeft="4px"
+
+            android:padding="10px"
             android:hint="  Search..."
             android:background="@drawable/border"
             android:textSize="16dp" />

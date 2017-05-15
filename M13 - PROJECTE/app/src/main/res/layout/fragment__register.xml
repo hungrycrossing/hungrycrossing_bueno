@@ -115,8 +115,11 @@
             android:layout_marginLeft="10dp">
 
             <EditText
-                android:layout_width="170dp"
+                android:layout_width="100dp"
                 android:layout_height="35dp"
+                android:layout_marginTop="35dp"
+                android:padding="10px"
+                android:layout_centerHorizontal="true"
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp"
                 android:id="@+id/etName"
@@ -125,21 +128,24 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:layout_width="170dp"
+                android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="15dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp"
                 android:id="@+id/etUsername"
-                android:hint="Introduce username"
+                android:textColor="#000"
                 android:background="@drawable/border"
                 android:textSize="16sp" />
 
             <EditText
-                android:layout_width="170dp"
+                android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="15dp"
                 android:id="@+id/etPassword"
+                android:layout_centerHorizontal="true"
+                android:textColor="#000"
+                android:padding="10px"
                 android:hint="Introduce Password"
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp"
@@ -148,22 +154,29 @@
                 android:textSize="16sp"
                 />
             <EditText
-                android:layout_width="170dp"
+                android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="15dp"
                 android:id="@+id/etConfirmPass"
+                android:textColor="#000"
+                android:padding="10px"
+                android:layout_centerHorizontal="true"
                 android:hint="Introduce Password"
                 android:inputType="textPassword"
                 android:background="@drawable/border"
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp"
                 android:textSize="16sp"
+
                 />
             <EditText
-                android:layout_width="170dp"
+                android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="15dp"
                 android:id="@+id/etMail"
+                android:textColor="#000"
+                android:padding="10px"
+                android:layout_centerHorizontal="true"
                 android:hint="Introduce Mail"
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp"

@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/orangeBackground"
-    tools:context="com.example.usuario.proyectodam2.loading_screen">
+    tools:context="com.example.usuario.proyectodam2.login_screen">
 
 
     <ImageView
@@ -46,12 +46,13 @@
             android:layout_toRightOf="@id/tvUsername"
             android:layout_below="@+id/imageView"
             android:layout_gravity="center"
+            android:textColor="#000"
             android:layout_marginLeft="10dp"
-            android:id="@+id/etUsername"
+            android:id="@+id/etUsernameLogin"
             android:hint="Introduce username"
             android:background="@drawable/border"
             android:textSize="16dp"
-            android:paddingLeft="8px"
+            android:padding="10px"
 
             />
     </LinearLayout>
@@ -79,13 +80,13 @@
             android:layout_height="35dp"
             android:layout_toRightOf="@id/tvPassword"
             android:layout_below="@+id/etUsername"
-
+            android:textColor="#000"
             android:layout_marginLeft="15dp"
-            android:id="@+id/etPassword"
+            android:id="@+id/etPasswordLogin"
             android:hint="Introduce Password"
             android:background="@drawable/border"
             android:textSize="16dp"
-            android:paddingLeft="8px"
+            android:padding="10px"
 
             />
     </LinearLayout>
