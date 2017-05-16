@@ -1,6 +1,7 @@
 package com.example.usuario.proyectodam2;
 
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -12,13 +13,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by usuario on 15/05/2017.
- */
+
 
 public class Main_Connection  extends AsyncTask<Void,Void,JSONObject> {
     private String ciutat, zona, esp1, esp2;
     private Float punts;
+    private JSONObject json=null;
+    private Handler handler= new Handler();
+
     public Main_Connection(String ciutat, String zona, String esp1, String esp2,Float punts)
     {
         this.ciutat=ciutat;
@@ -31,13 +33,11 @@ public class Main_Connection  extends AsyncTask<Void,Void,JSONObject> {
     @Override
     protected void onPostExecute(JSONObject jsonObject) {
         super.onPostExecute(jsonObject);
-
     }
 
     @Override
     protected JSONObject doInBackground(Void... voids) {
-        JSONObject json=null;
-        URL url = null;
+        URL url;
         try {
             url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona +"&esp1="+esp1+"&esp2="+esp2+"&punts="+punts);
             HttpURLConnection urlConnection = null;
@@ -45,7 +45,7 @@ public class Main_Connection  extends AsyncTask<Void,Void,JSONObject> {
             int status = urlConnection.getResponseCode();
 
 
-            urlConnection.setRequestMethod("GET");//DUDA
+            urlConnection.setRequestMethod("GET");
             urlConnection.setReadTimeout(10000 );
             urlConnection.setConnectTimeout(15000 );
 
@@ -65,17 +65,19 @@ public class Main_Connection  extends AsyncTask<Void,Void,JSONObject> {
                 sb.append(line).append("\n");
             }
             br.close();
-
             json= new JSONObject(sb.toString());
-
             System.out.println("JSON: " + jsonString);
-
 
 
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
         Log.d("Avis","Ha acabat de fer el do in background");
+        return json;
+    }
+
+    public JSONObject getJson()
+    {
         return json;
     }
 }

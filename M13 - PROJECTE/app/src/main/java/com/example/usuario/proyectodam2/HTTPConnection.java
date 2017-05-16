@@ -1,6 +1,14 @@
 package com.example.usuario.proyectodam2;
 
+import android.app.Activity;
+import android.app.Notification;
+import android.app.usage.UsageEvents;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -12,6 +20,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import static com.example.usuario.proyectodam2.login_screen.handler;
+import com.example.usuario.proyectodam2.login_screen.*;
+import static android.os.Build.VERSION_CODES.N;
 
 /**
  * Created by Bernat on 09/05/2017.
@@ -21,15 +32,21 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
     String password;
     private int state;
     public int status;
+    private Context context;
+    Bundle bundle= new Bundle();
+    //public static Handler handler=login_screen.handler;
+
+
     public  HTTPConnection(String log, String pass)
     {
         login = log;
         password = pass;
-
     }
+
 
     @Override
     protected JSONObject doInBackground(Void... params) {
+
         JSONObject json=null;
         URL url = null;
         try {
@@ -40,8 +57,8 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
 
 
             urlConnection.setRequestMethod("GET");//DUDA
-            urlConnection.setReadTimeout(10000 );
-            urlConnection.setConnectTimeout(15000 );
+            urlConnection.setReadTimeout(10000 /* milliseconds */);
+            urlConnection.setConnectTimeout(15000 /* milliseconds */);
 
             //urlConnection.setDoOutput(true);
 
@@ -51,7 +68,7 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
 
             char[] buffer = new char[1024];
 
-            String jsonString = new String();
+            String jsonString = "";
 
             StringBuilder sb = new StringBuilder();
             String line;
@@ -66,32 +83,32 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
 
 
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
-        Log.d("Avis","Ha acabat de fer el do in background");
-        return null;
+        return json;
+
     }
-
-
     @Override
     protected void onPostExecute(JSONObject jsonObject) {
         super.onPostExecute(jsonObject);
-        Log.d("Avis","Inici pst execute ");
         try {
-
             state=jsonObject.getInt("estado");
 
-            login_screen.status=state;
+            bundle.putInt("state",state);
+            Message msg=new Message();
+            msg.setData(bundle);
+            handler.sendMessage(msg);
         } catch (JSONException e) {
             e.printStackTrace();
 
         }
+        //es retorna el jsonObject de forma estatica (no tinc ni P idea)
     }
+public int getState()
+{
+    return state;
+}
 
     @Override
     protected void onProgressUpdate(Void... values) {

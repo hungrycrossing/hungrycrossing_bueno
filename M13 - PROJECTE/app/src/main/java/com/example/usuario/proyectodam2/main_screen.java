@@ -11,6 +11,8 @@ import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.RatingBar;
 
+import org.json.JSONObject;
+
 public class main_screen extends AppCompatActivity {
     final Context context = this;
     String zona,esp;
@@ -21,8 +23,6 @@ public class main_screen extends AppCompatActivity {
         setContentView(R.layout.activity_main_screen);
 
         Button btfiltres = (Button) (findViewById(R.id.btnFiltros));
-
-
         btfiltres.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -60,8 +60,11 @@ public class main_screen extends AppCompatActivity {
                         //va a devolver un json con la lista de restaurantes segun los filtros que yo le indique
                         float[] punts = new float[]{ rb1.getRating() };
                         connection=new Main_Connection(null,zona,esp,null,punts[0]);
-                        connection.execute();
+
+                        JSONObject json=connection.getJson();
                         dialog.dismiss();
+
+
                     }
                 });
 

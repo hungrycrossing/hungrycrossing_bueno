@@ -72,11 +72,7 @@ public class Register_connection extends AsyncTask<Void,Void,JSONObject> {
 
 
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
         Log.d("Avis","Ha acabat de fer el do in background");

@@ -1,6 +1,9 @@
 package com.example.usuario.proyectodam2;
 
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,8 +23,8 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
     private String pass,username;
     TextView error;
     public static int status;
-    Login_connection connection;
-
+    HTTPConnection connection;
+    public static Handler handler;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -41,41 +44,36 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onClick(View v) {
             if(v==btLog) {
+                handler=new Handler(){
+                    @Override
+                    public void handleMessage(Message msg) {
+                        super.handleMessage(msg);
+                        if(msg.getData().getInt("state")==1)
+                        {
+                            Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
+                            startActivity(main_screen);
+                            //pasem a la pagina principal
+                        }
+                        else
+                            error.setVisibility(View.VISIBLE);
+                    }
+                };
 
                 pass = etPssw.getText().toString();
                 username = etUsername.getText().toString();
-
-
-                    connection = new Login_connection(username, pass);
+                    connection = new HTTPConnection(username, pass);
 
                     connection.execute();
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+
+                  //  ssadfd();
+
                     }
-                    status=1;
-                    /*while (status != 1 && status!=2)
-                    {
-
-                    }*(
-                /*{
-                  status=connection.getState();   //Amb aixo bloquejo la pantalla fins que l'httpconnection retorni el reusltat
-                }*/
 
 
 
-                    if (status == 1)//cas correcte
-                    {
-                        Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
-                        startActivity(main_screen);
-                        //pasem a la pagina principal
 
-                    } else //introduce user o psw que no tocan
-                    {
-                        error.setVisibility(View.VISIBLE);
-                    }
-                }
+
+
                 if (v == btnRegister) //lleva al activity de registrar
                 {
                     Intent register_screen = new Intent(getApplicationContext(), register_screen.class);
@@ -84,4 +82,23 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
 
         }
 
+        private void ssadfd()
+        {
+            if(connection.getStatus()== AsyncTask.Status.FINISHED)
+            {
+                status=connection.getState();   //Amb aixo bloquejo la pantalla fins que l'httpconnection retorni el reusltat
+
+                if (status == 1)//cas correcte
+                {
+                    Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
+                    startActivity(main_screen);
+                    //pasem a la pagina principal
+
+
+                } else //introduce user o psw que no tocan
+                {
+                    error.setVisibility(View.VISIBLE);
+                }
+            }
+        }
 }

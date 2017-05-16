@@ -38,18 +38,18 @@ public class Fragment_Restaurant extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        btSend=(Button)getView().findViewById(android.R.id.btSend);
-        imgRest=(ImageView)getView().findViewById(android.R.id.imgRest);
-        rBar=(RatingBar) getView().findViewById(android.R.id.rBar1);
-        tvNomRest=(TextView)getView().findViewById(android.R.id.tvNomRest);
-        tvTelf=(TextView)getView().findViewById(android.R.id.tvTelf);
-        tvCorreu=(TextView)getView().findViewById(android.R.id.tvCorreu);
-        tvInfo=(TextView)getView().findViewById(android.R.id.tvInfo);
-        tvComentario=(TextView)getView().findViewById(android.R.id.tvComentario);
-        tvRating=(TextView)getView().findViewById(android.R.id.tvRating);
-        tvOpiniones=(TextView)getView().findViewById(android.R.id.tvOpiniones);
-        tvOpinion=(TextView)getView().findViewById(android.R.id.tvOpinion);
-        etComentario=(EditText)getView().findViewById(android.R.id.etComentario);
+        btSend=(Button)getView().findViewById(R.id.btSend);
+        imgRest=(ImageView)getView().findViewById(R.id.imgRest);
+        rBar=(RatingBar) getView().findViewById(R.id.rBar1);
+        tvNomRest=(TextView)getView().findViewById(R.id.tvNomRest);
+        tvTelf=(TextView)getView().findViewById(R.id.tvTelf);
+        tvCorreu=(TextView)getView().findViewById(R.id.tvCorreu);
+        tvInfo=(TextView)getView().findViewById(R.id.tvInfo);
+        tvComentario=(TextView)getView().findViewById(R.id.tvComentario);
+        tvRating=(TextView)getView().findViewById(R.id.tvRating);
+        tvOpiniones=(TextView)getView().findViewById(R.id.tvOpiniones);
+        tvOpinion=(TextView)getView().findViewById(R.id.tvOpinion);
+        etComentario=(EditText)getView().findViewById(R.id.etComentario);
     }
 
 
