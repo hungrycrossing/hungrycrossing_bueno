@@ -1,38 +1,25 @@
 package com.example.usuario.proyectodam2;
-
-import android.app.Activity;
-import android.app.Notification;
-import android.app.usage.UsageEvents;
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import static com.example.usuario.proyectodam2.login_screen.handler;
-import com.example.usuario.proyectodam2.login_screen.*;
-import static android.os.Build.VERSION_CODES.N;
 
 /**
  * Created by Bernat on 09/05/2017.
  */
 public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
-    String login;
-    String password;
+    private String login;
+    private String password;
     private int state;
-    public int status;
-    private Context context;
+    private int status;
+ //   private Context context;
     Bundle bundle= new Bundle();
     //public static Handler handler=login_screen.handler;
 
@@ -51,9 +38,8 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
         URL url = null;
         try {
             url = new URL("http://hungrycrossing.000webhostapp.com/ComprobarLogin.php?login=" + login + "&psw=" + password );
-            HttpURLConnection urlConnection = null;
+            HttpURLConnection urlConnection;
             urlConnection = (HttpURLConnection)url.openConnection();
-            status = urlConnection.getResponseCode();
 
 
             urlConnection.setRequestMethod("GET");//DUDA
@@ -62,7 +48,8 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
 
             //urlConnection.setDoOutput(true);
 
-            urlConnection.connect();
+            //urlConnection.connect();
+            //status = urlConnection.getResponseCode();
 
             BufferedReader br=new BufferedReader(new InputStreamReader(url.openStream()));
 
@@ -73,16 +60,12 @@ public class HTTPConnection extends AsyncTask<Void,Void,JSONObject> {
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
-                sb.append(line+"\n");
+                sb.append(line).append("\n");
             }
             br.close();
-
             json= new JSONObject(sb.toString());
 
             System.out.println("JSON: " + jsonString);
-
-
-
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }

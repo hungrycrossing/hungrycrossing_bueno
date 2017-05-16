@@ -25,21 +25,17 @@ public class enviarMail extends AsyncTask<Void,Void,JSONObject> {
 
     @Override
     protected JSONObject doInBackground(Void... voids) {
-        URL url = null;
+        URL url;
         try {
             url = new URL("http://hungrycrossing.000webhostapp.com/mail.php?mail=" + mail + "&nom=" + nom);
-            HttpURLConnection urlConnection = null;
+            HttpURLConnection urlConnection;
             urlConnection = (HttpURLConnection) url.openConnection();
-            status = urlConnection.getResponseCode();
+            //status = urlConnection.getResponseCode();
 
 
             urlConnection.setRequestMethod("GET");//DUDA
             urlConnection.setReadTimeout(10000);
             urlConnection.setConnectTimeout(15000);
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

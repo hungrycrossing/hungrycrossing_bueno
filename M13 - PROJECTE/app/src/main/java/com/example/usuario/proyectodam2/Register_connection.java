@@ -1,8 +1,7 @@
 package com.example.usuario.proyectodam2;
-
-import android.app.Activity;
-import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -12,16 +11,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import static com.example.usuario.proyectodam2.register_screen.handler;
+
 
 /**
  * Created by usuario on 13/05/2017.
  */
 
 public class Register_connection extends AsyncTask<Void,Void,JSONObject> {
-    int status, state;
-    String mail,password,login,nom,cp;
+    private int state;
+    private String mail,password,login,nom,cp;
+    Bundle bundle=new Bundle();
 
     public Register_connection(String mail, String pass, String login, String nom, String cp)
     {
@@ -35,49 +36,41 @@ public class Register_connection extends AsyncTask<Void,Void,JSONObject> {
     @Override
     protected JSONObject doInBackground(Void... voids) {
         JSONObject json=null;
-
-
-        URL url = null;
+        URL url;
         try {
-            url = new URL("http://hungrycrossing.000webhostapp.com/Inserir_Usuaris.php?mail=" + mail + "&pssw" + password +"&state=0&login="+login+"&nom="+nom+"&CP="+cp );
+            url = new URL("http://hungrycrossing.000webhostapp.com/Inserir_Usuaris.php?mail=" + mail + "&pssw=" + password +"&state=0&login="+login+"&nom="+nom+"&CP="+cp+"&datanaix=1990-10-10");
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection)url.openConnection();
-            status = urlConnection.getResponseCode();
 
 
             urlConnection.setRequestMethod("GET");//DUDA
-            urlConnection.setReadTimeout(10000 );
-            urlConnection.setConnectTimeout(15000 );
+            urlConnection.setReadTimeout(10000 /* milliseconds */);
+            urlConnection.setConnectTimeout(15000 /* milliseconds */);
 
             //urlConnection.setDoOutput(true);
 
-            urlConnection.connect();
+            //urlConnection.connect();
+            //status = urlConnection.getResponseCode();
 
             BufferedReader br=new BufferedReader(new InputStreamReader(url.openStream()));
 
             char[] buffer = new char[1024];
 
-            String jsonString = new String();
+            String jsonString = "";
 
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = br.readLine()) != null) {
-                sb.append(line+"\n");
+                sb.append(line).append("\n");
             }
             br.close();
-
             json= new JSONObject(sb.toString());
-
             System.out.println("JSON: " + jsonString);
-
-
 
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
-        Log.d("Avis","Ha acabat de fer el do in background");
         return json;
-
     }
     @Override
     protected void onPostExecute(JSONObject jsonObject) {
@@ -86,7 +79,11 @@ public class Register_connection extends AsyncTask<Void,Void,JSONObject> {
         try {
             state=jsonObject.getInt("estado");
 
-            login_screen.status=state;
+            bundle.putInt("state",state);
+            Message msg=new Message();
+            msg.setData(bundle);
+            handler.sendMessage(msg);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }    }
