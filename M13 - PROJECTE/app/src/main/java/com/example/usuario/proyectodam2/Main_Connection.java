@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import static com.example.usuario.proyectodam2.main_screen.handler;
 
@@ -55,9 +56,114 @@ public class Main_Connection  extends AsyncTask<Void,Void,JSONObject> {
 
     @Override
     protected JSONObject doInBackground(Void... voids) {
-        URL url;
+        URL url = null;
         try {
-            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona +"&esp1="+esp1+"&esp2="+esp2+"&valoracio="+punts);
+            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if(ciutat!=null)
+            {
+                if(zona!=null)
+                {
+                    if(esp1!=null)
+                    {
+                        if(punts==null) {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona +"&esp1="+esp1);
+                        }
+                        if(punts!=null)
+                        {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona +"&esp1="+esp1+"&valoracio="+punts);
+                        }
+                    }
+                    if(esp1==null)
+                    {
+                        if(punts==null) {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona);
+                        }
+                        if(punts!=null)
+                        {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona+"&valoracio="+punts);
+                        }
+                    }
+                }
+                if(zona==null)
+                {
+                    if(esp1!=null)
+                    {
+                        if(punts==null) {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat+"&esp1="+esp1);
+                        }
+                        if(punts!=null)
+                        {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat+"&esp1="+esp1+"&valoracio="+punts);
+                        }
+                    }
+                    if(esp1==null)
+                    {
+                        if(punts==null) {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat);
+                        }
+                        if(punts!=null)
+                        {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat+"&valoracio="+punts);
+                        }
+                    }
+                }
+            }
+            if(ciutat==null)
+            {
+                if(zona!=null)
+                {
+                    if(esp1!=null)
+                    {
+                        if(punts==null) {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona +"&esp1="+esp1);
+                        }
+                        if(punts!=null)
+                        {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona +"&esp1="+esp1+"&valoracio="+punts);
+                        }
+                    }
+                    if(esp1==null)
+                    {
+                        if(punts==null) {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona);
+                        }
+                        if(punts!=null)
+                        {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona +"&valoracio="+punts);
+                        }
+                    }
+                }
+                if(zona==null)
+                {
+                    if(esp1!=null)
+                    {
+                        if(punts==null) {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?esp1="+esp1);
+
+                        }
+                        if(punts!=null)
+                        {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?esp1="+esp1+"&valoracio="+punts);
+
+                        }
+                }
+                    if(esp1==null)
+                    {
+                        if(punts==null) {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php");
+                        }
+                        if(punts!=null)
+                        {
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?valoracio="+punts);
+                        }
+                    }
+                }
+            }
+            //url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona +"&esp1="+esp1+"&esp2="+esp2+"&valoracio="+punts);
            //url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php");
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection)url.openConnection();
