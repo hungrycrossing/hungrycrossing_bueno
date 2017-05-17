@@ -2,6 +2,9 @@ package com.example.usuario.proyectodam2;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +19,8 @@ import org.json.JSONObject;
 public class main_screen extends AppCompatActivity {
     final Context context = this;
     String zona,esp;
-    Main_Connection connection;
+
+    public static Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +63,24 @@ public class main_screen extends AppCompatActivity {
                         //primero de toddo llamaré a la clase para conectarse con el php de filtros el cual me
                         //va a devolver un json con la lista de restaurantes segun los filtros que yo le indique
                         float[] punts = new float[]{ rb1.getRating() };
-                        connection=new Main_Connection(null,zona,esp,null,punts[0]);
+                        Main_Connection connection=new Main_Connection(null,zona,esp,null,null);
+                        //Main_Connection connection=new Main_Connection("Martorelles","Montanya","Xines","Hola",punts[0]);
+                        connection.execute();
+                        handler=new Handler(){
+                            @Override
+                            public void handleMessage(Message msg) {
+                                super.handleMessage(msg);
+                                if(msg.getData().getInt("state")==1)
+                                {
+                                    //JSONObject json=connection.getJson();
+                                }
+                                else
+                                {
+                                }
 
+                            }
+                        };
+                        //J
                         JSONObject json=connection.getJson();
                         dialog.dismiss();
 
