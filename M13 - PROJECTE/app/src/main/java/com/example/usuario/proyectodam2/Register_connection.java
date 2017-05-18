@@ -1,6 +1,8 @@
 package com.example.usuario.proyectodam2;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
@@ -23,6 +25,7 @@ public class Register_connection extends AsyncTask<Void,Void,JSONObject> {
     private int state;
     private String mail,password,login,nom,cp;
     Bundle bundle=new Bundle();
+    public static Handler handlermail;
 
     public Register_connection(String mail, String pass, String login, String nom, String cp)
     {
@@ -66,7 +69,6 @@ public class Register_connection extends AsyncTask<Void,Void,JSONObject> {
             br.close();
             json= new JSONObject(sb.toString());
             System.out.println("JSON: " + jsonString);
-
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
@@ -78,11 +80,29 @@ public class Register_connection extends AsyncTask<Void,Void,JSONObject> {
         Log.d("Avis","Inici pst execute ");
         try {
             state=jsonObject.getInt("estado");
+            if(state==1)
+            {
+                enviarMail enviar=new enviarMail(mail,login);
+                enviar.execute();
+                handlermail=new Handler(){
+                    @Override
+                    public void handleMessage(Message msg2) {
+                        super.handleMessage(msg2);
+                        if(msg2.getData().getInt("state")==1) {
+                            bundle.putInt("state",state);
+                            Message msg=new Message();
+                            msg.setData(bundle);
+                            handler.sendMessage(msg);
 
-            bundle.putInt("state",state);
-            Message msg=new Message();
-            msg.setData(bundle);
-            handler.sendMessage(msg);
+                            //Log.d("Loguejat amb exit","molt exit");
+                           /* Intent login_screen = new Intent(getApplicationContext(), login_screen.class);
+                            startActivity(login_screen);
+                            finish();*/
+                        }
+                    }
+                };
+            }
+
 
         } catch (JSONException e) {
             e.printStackTrace();
