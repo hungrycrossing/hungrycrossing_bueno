@@ -65,7 +65,7 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
 
                     connection.execute();
 
-                  //  ssadfd();
+
 
                     }
 
@@ -82,23 +82,5 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
 
         }
 
-        private void ssadfd()
-        {
-            if(connection.getStatus()== AsyncTask.Status.FINISHED)
-            {
-                status=connection.getState();   //Amb aixo bloquejo la pantalla fins que l'httpconnection retorni el reusltat
 
-                if (status == 1)//cas correcte
-                {
-                    Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
-                    startActivity(main_screen);
-                    //pasem a la pagina principal
-
-
-                } else //introduce user o psw que no tocan
-                {
-                    error.setVisibility(View.VISIBLE);
-                }
-            }
-        }
 }

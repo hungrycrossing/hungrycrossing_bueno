@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RatingBar;
 
@@ -18,14 +19,19 @@ import org.json.JSONObject;
 
 public class main_screen extends AppCompatActivity {
     final Context context = this;
-    String zona,esp;
+    String zona,esp,nomRest;
+    private EditText etSearch;
+    public static Handler handler,handler2;
+    Search_Connection connection2;
 
-    public static Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
+
+        etSearch=(EditText)(findViewById(R.id.etSearch));
+        // si li donc al botó filtrar del main screen
         Button btfiltres = (Button) (findViewById(R.id.btnFiltros));
         btfiltres.setOnClickListener(new OnClickListener() {
 
@@ -93,5 +99,36 @@ public class main_screen extends AppCompatActivity {
 
 
         });
+        //si li donc al botó search del main screen
+        Button btSearch = (Button) (findViewById(R.id.btSearch));
+        btSearch.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handler2=new Handler(){
+                    @Override
+                    public void handleMessage(Message msg) {
+                        super.handleMessage(msg);
+                        if(msg.getData().getInt("state")==1)
+                        {
+                            //Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
+                            //startActivity(main_screen);
+                            //mostrem la llista de restaurants
+                        }
+                        //else
+                            //error.setVisibility(View.VISIBLE);
+                    }
+                };
+
+
+
+                nomRest=etSearch.getText().toString();
+
+                connection2 = new Search_Connection(nomRest);
+
+                connection2.execute();
+
+            }
+        });
+
     }
 }
