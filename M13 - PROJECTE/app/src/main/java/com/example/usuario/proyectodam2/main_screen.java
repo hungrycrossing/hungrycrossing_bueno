@@ -69,7 +69,7 @@ public class main_screen extends AppCompatActivity {
                         //primero de toddo llamaré a la clase para conectarse con el php de filtros el cual me
                         //va a devolver un json con la lista de restaurantes segun los filtros que yo le indique
                         float[] punts = new float[]{ rb1.getRating() };
-                        Main_Connection connection=new Main_Connection(null,zona,esp,null,null);
+                        Main_Connection connection=new Main_Connection(null,zona,esp,null,punts[0]);
                         //Main_Connection connection=new Main_Connection("Martorelles","Montanya","Xines","Hola",punts[0]);
                         connection.execute();
                         handler=new Handler(){
