@@ -12,24 +12,28 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 
 import org.json.JSONObject;
 
 public class main_screen extends AppCompatActivity {
-    final Context context = this;
+    //final Context context = this;
     String zona,esp,nomRest;
     private EditText etSearch;
     public static Handler handler,handler2;
     Search_Connection connection2;
-
+    public Context context;
+    public LinearLayout linear;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-
+        linear=(LinearLayout) findViewById(R.id.layoutImportant);
+        context=this;
         etSearch=(EditText)(findViewById(R.id.etSearch));
         // si li donc al botó filtrar del main screen
         Button btfiltres = (Button) (findViewById(R.id.btnFiltros));
@@ -69,19 +73,21 @@ public class main_screen extends AppCompatActivity {
                         //primero de toddo llamaré a la clase para conectarse con el php de filtros el cual me
                         //va a devolver un json con la lista de restaurantes segun los filtros que yo le indique
                         float[] punts = new float[]{ rb1.getRating() };
-                        Main_Connection connection=new Main_Connection(null,zona,esp,null,punts[0]);
+                        Main_Connection connection=new Main_Connection(null,zona,esp,null,punts[0],context);
                         //Main_Connection connection=new Main_Connection("Martorelles","Montanya","Xines","Hola",punts[0]);
-                        connection.execute();
+                        connection.execute(linear);
                         handler=new Handler(){
                             @Override
                             public void handleMessage(Message msg) {
                                 super.handleMessage(msg);
                                 if(msg.getData().getInt("state")==1)
                                 {
-                                    //JSONObject json=connection.getJson();
+                                   // JSONObject json=connection.getJson();
+
                                 }
                                 else
                                 {
+
                                 }
 
                             }
