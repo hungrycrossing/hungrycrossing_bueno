@@ -32,7 +32,7 @@ public class Login_connection extends AsyncTask<Void,Void,JSONObject>{
     protected void onPostExecute(JSONObject jsonObject) {
         super.onPostExecute(jsonObject);
 
-        super.onPostExecute(jsonObject);
+        //super.onPostExecute(jsonObject);
         Log.d("Avis","Inici pst execute ");
         try {
 

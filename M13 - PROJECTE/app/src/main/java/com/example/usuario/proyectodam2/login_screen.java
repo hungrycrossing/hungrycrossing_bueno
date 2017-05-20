@@ -52,6 +52,7 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
                         {
                             Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
                             startActivity(main_screen);
+                            finish();
                             //pasem a la pagina principal
                         }
                         else

@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="orangeBackground">#Fa6F1a</color>
+    <color name="layoutBackground">#FFA82B</color>
     <color name="darkOrange">#CC3300</color>
 </resources>

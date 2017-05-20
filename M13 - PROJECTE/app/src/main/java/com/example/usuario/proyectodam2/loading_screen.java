@@ -24,7 +24,13 @@ public class loading_screen extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_screen);
         Intent login_screen= new  Intent(getApplicationContext(), login_screen.class);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         startActivity(login_screen);
+        finish();
     }
 
     @Override

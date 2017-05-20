@@ -24,16 +24,17 @@ public class main_screen extends AppCompatActivity {
     String zona,esp,nomRest;
     private EditText etSearch;
     public static Handler handler,handler2;
-    Search_Connection connection2;
-    public Context context;
-    public LinearLayout linear;
+    public Context context,context2;
+    public LinearLayout linear,linear2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
         linear=(LinearLayout) findViewById(R.id.layoutImportant);
+        //linear2=(LinearLayout) findViewById(R.id.layoutImportant);
         context=this;
+        context2=this;
         etSearch=(EditText)(findViewById(R.id.etSearch));
         // si li donc al botó filtrar del main screen
         Button btfiltres = (Button) (findViewById(R.id.btnFiltros));
@@ -70,6 +71,7 @@ public class main_screen extends AppCompatActivity {
                 dialogButton.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        linear.removeAllViews();
                         //primero de toddo llamaré a la clase para conectarse con el php de filtros el cual me
                         //va a devolver un json con la lista de restaurantes segun los filtros que yo le indique
                         float[] punts = new float[]{ rb1.getRating() };
@@ -110,6 +112,11 @@ public class main_screen extends AppCompatActivity {
         btSearch.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                nomRest=etSearch.getText().toString();
+                linear.removeAllViews();
+                Search_Connection connection2 = new Search_Connection(nomRest,context2);
+
+                connection2.execute(linear);
                 handler2=new Handler(){
                     @Override
                     public void handleMessage(Message msg) {
@@ -127,11 +134,6 @@ public class main_screen extends AppCompatActivity {
 
 
 
-                nomRest=etSearch.getText().toString();
-
-                connection2 = new Search_Connection(nomRest);
-
-                connection2.execute();
 
             }
         });

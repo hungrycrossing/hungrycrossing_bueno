@@ -95,7 +95,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
             /*state=jsonObject.getInt("estado");
 
             bundle.putInt("state",state);
-
+        Log.d("Avis","FI pst execute ");
             Message msg=new Message();
             msg.setData(bundle);
             main_screen.handler.sendMessage(msg);*/
@@ -126,7 +126,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         /****************************/
@@ -142,7 +142,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
 
         layout2.addView(tvnomRest);
         layout2.addView(tvnomCiutat);
-        layout2.addView(imgRest);
+        //layout2.addView(imgRest);
         layoutimportant.addView(layout2);
 
 
@@ -168,7 +168,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona +"&esp1="+esp1+"&valoracio="+puntos);
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona +"&esp1="+esp1+"&puntuacio="+puntos);
                         }
                     }
                     if(esp1==null)
@@ -178,7 +178,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona+"&valoracio="+puntos);
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona+"&puntuacio="+puntos);
                         }
                     }
                 }
@@ -191,7 +191,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat+"&esp1="+esp1+"&valoracio="+puntos);
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat+"&esp1="+esp1+"&puntuacio="+puntos);
                         }
                     }
                     if(esp1==null)
@@ -201,7 +201,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat+"&valoracio="+puntos);
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat+"&puntuacio="+puntos);
                         }
                     }
                 }
@@ -217,7 +217,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona +"&esp1="+esp1+"&valoracio="+puntos);
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona +"&esp1="+esp1+"&puntuacio="+puntos);
                         }
                     }
                     if(esp1==null)
@@ -227,7 +227,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona +"&valoracio="+puntos);
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona +"&puntuacio="+puntos);
                         }
                     }
                 }
@@ -241,7 +241,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?esp1="+esp1+"&valoracio="+puntos);
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?esp1="+esp1+"&puntuacio="+puntos);
 
                         }
                     }
@@ -252,7 +252,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?valoracio="+puntos);
+                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?puntuacio="+puntos);
                         }
                     }
                 }
@@ -261,7 +261,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
            //url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php");
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection)url.openConnection();
-            //int status = urlConnection.getResponseCode();
+            int status = urlConnection.getResponseCode();
 
 
             urlConnection.setRequestMethod("GET");
