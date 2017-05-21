@@ -46,11 +46,15 @@ public class Search_Connection extends AsyncTask<View,Void,JSONObject> {
         this.nomRest=rest;
         this.cont=context;
     }
+    public JSONObject getjson()
+    {
+        return json;
+    }
 
     @Override
     protected void onPostExecute(JSONObject jsonObject) {
         super.onPostExecute(jsonObject);
-        int i=0;
+        /*int i=0;
         try {
 
             for(i=0;i<jsonObject.length()-1;i++) {
@@ -61,17 +65,22 @@ public class Search_Connection extends AsyncTask<View,Void,JSONObject> {
                 imatgereal=direccioimg+imatge;
                 ciutat2=json.getString("NomPob");
                 addChild(nom,imatgereal,ciutat2);
-            }
-            /*state=jsonObject.getInt("estado");
-
-            bundle.putInt("state",state);
-            Message msg=new Message();
-            msg.setData(bundle);
-            handler2.sendMessage(msg);*/
-        } catch (JSONException e) {
+                   } catch (JSONException e) {
             e.printStackTrace();
 
         }
+            }*/
+        try {
+            state=jsonObject.getInt("estado");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        bundle.putInt("state",state);
+            Message msg=new Message();
+            msg.setData(bundle);
+            handler2.sendMessage(msg);
+
     }
 
     private void addChild(String nom, String imatgereal, String ciutat3) {
@@ -102,14 +111,14 @@ public class Search_Connection extends AsyncTask<View,Void,JSONObject> {
 
 
         /****************************/
-        LinearLayout layout2=new LinearLayout(cont);
+       /* LinearLayout layout2=new LinearLayout(cont);
         layout2.setBackgroundResource(R.drawable.border);
         layout2.setOrientation(LinearLayout.HORIZONTAL);
         ImageView imatge3=new ImageView(cont);
 
         imatge3.setImageResource(R.drawable.foto_perfil_user);
 
-        
+        imatge3.setContentDescription(imatgee);
         imatge3.setTop(20);
         imatge3.setScaleX(0.5f);
         imatge3.setScaleY(0.5f);
@@ -134,12 +143,12 @@ public class Search_Connection extends AsyncTask<View,Void,JSONObject> {
 
         layout2.setClickable(true);//per accedir a la pagina del restaurnat individual
 
-        layoutimportant2.addView(layout2);
+        layoutimportant2.addView(layout2);*/
 
     }
     @Override
     protected JSONObject doInBackground(View... view) {
-        layoutimportant2= (LinearLayout) view[0];
+        //layoutimportant2= (LinearLayout) view[0];
 
         URL url = null;
 
