@@ -46,11 +46,15 @@ public class Search_Connection extends AsyncTask<View,Void,JSONObject> {
         this.nomRest=rest;
         this.cont=context;
     }
+    public JSONObject getjson()
+    {
+        return json;
+    }
 
     @Override
     protected void onPostExecute(JSONObject jsonObject) {
         super.onPostExecute(jsonObject);
-        int i=0;
+        /*int i=0;
         try {
 
             for(i=0;i<jsonObject.length()-1;i++) {
@@ -61,85 +65,27 @@ public class Search_Connection extends AsyncTask<View,Void,JSONObject> {
                 imatgereal=direccioimg+imatge;
                 ciutat2=json.getString("NomPob");
                 addChild(nom,imatgereal,ciutat2);
-            }
-            /*state=jsonObject.getInt("estado");
-
-            bundle.putInt("state",state);
-            Message msg=new Message();
-            msg.setData(bundle);
-            handler2.sendMessage(msg);*/
-        } catch (JSONException e) {
+                   } catch (JSONException e) {
             e.printStackTrace();
 
         }
-    }
-
-    private void addChild(String nom, String imatgereal, String ciutat3) {
-        String nome,imatgee,city;
-        nome=nom;
-        imatgee=imatgereal;
-        city=ciutat3;
-        /*Connexio per obtenir imatge*/
-        //HttpURLConnection conn=null;
-        /*try {
-
-
-            imageUrl=new URL(imatgee);
-            conn=(HttpURLConnection)imageUrl.openConnection();
-            conn.connect();
-
-            InputStream in=new BufferedInputStream(conn.getInputStream());
-            imagen= BitmapFactory.decodeStream(in);
-            //imagen= BitmapFactory.decodeStream(conn.getInputStream());
-
-            imgRest=new ImageView(cont);
-            imgRest.setImageBitmap(imagen);
-            imgRest.setPadding(10,10,10,10);
-
-        } catch (Exception e) {
+            }*/
+        try {
+            state=jsonObject.getInt("estado");
+        } catch (JSONException e) {
             e.printStackTrace();
-        }*/
+        }
 
-
-        /****************************/
-        LinearLayout layout2=new LinearLayout(cont);
-        layout2.setBackgroundResource(R.drawable.border);
-        layout2.setOrientation(LinearLayout.HORIZONTAL);
-        ImageView imatge3=new ImageView(cont);
-
-        imatge3.setImageResource(R.drawable.foto_perfil_user);
-
-        
-        imatge3.setTop(20);
-        imatge3.setScaleX(0.5f);
-        imatge3.setScaleY(0.5f);
-        TextView tvnomRest=new TextView(cont);
-        tvnomRest.setText(nome);
-        tvnomRest.setPadding(10,10,10,10);
-        TextView tvnomCiutat=new TextView(cont);
-        tvnomCiutat.setText(city);
-        tvnomCiutat.setPadding(10,10,10,10);
-
-        layout2.addView(imatge3);
-        layout2.addView(tvnomRest);
-        layout2.addView(tvnomCiutat);
-
-
-        layout2.setBackgroundColor(Color.rgb(255, 168, 43));
-        layout2.setGravity(2);
-        layout2.setMinimumWidth(700);
-        layout2.setMinimumHeight(300);
-        layout2.setBackgroundResource(R.drawable.border2);
-
-
-        layout2.setClickable(true);//per accedir a la pagina del restaurnat individual
-
-        layoutimportant2.addView(layout2);
+        bundle.putInt("state",state);
+            Message msg=new Message();
+            msg.setData(bundle);
+            handler2.sendMessage(msg);
 
     }
+
     @Override
     protected JSONObject doInBackground(View... view) {
-        layoutimportant2= (LinearLayout) view[0];
+        //layoutimportant2= (LinearLayout) view[0];
 
         URL url = null;
 

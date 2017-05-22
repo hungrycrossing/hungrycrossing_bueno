@@ -61,7 +61,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
     protected void onPostExecute(JSONObject jsonObject) {
         super.onPostExecute(jsonObject);
 
-        int i=0;
+      /*  int i=0;
         Log.d("Avis","Inici pst execute ");
         try {
             for(i=0;i<jsonObject.length()-1;i++) {
@@ -126,7 +126,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
 
 
         /****************************/

@@ -23,9 +23,10 @@ public class main_screen extends AppCompatActivity {
     //final Context context = this;
     String zona,esp,nomRest;
     private EditText etSearch;
-    public static Handler handler,handler2;
+    public static Handler handler,handler2, handler3;
     public Context context,context2;
     public LinearLayout linear,linear2;
+    private JSONObject json;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +115,7 @@ public class main_screen extends AppCompatActivity {
             public void onClick(View v) {
                 nomRest=etSearch.getText().toString();
                 linear.removeAllViews();
-                Search_Connection connection2 = new Search_Connection(nomRest,context2);
+                final Search_Connection connection2 = new Search_Connection(nomRest,context2);
 
                 connection2.execute(linear);
                 handler2=new Handler(){
@@ -126,11 +127,38 @@ public class main_screen extends AppCompatActivity {
                             //Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
                             //startActivity(main_screen);
                             //mostrem la llista de restaurants
+                            json=connection2.getjson();
+                            final descarregarimg_rest desc=new descarregarimg_rest(json,context2);
+                            desc.execute(linear);
+
+                            /*handler3=new Handler(){
+                                @Override
+                                public void handleMessage(Message msg) {
+                                   // super.handleMessage(msg);
+                                    if(msg.getData().getInt("state")==1)
+                                    {
+                                        //Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
+                                        //startActivity(main_screen);
+                                        //mostrem la llista de restaurants
+                                        //  json=connection2.getjson();
+                                    }
+
+
+                                    //else
+                                    //error.setVisibility(View.VISIBLE);
+                                }
+
+                            };*/
                         }
+
+
                         //else
                             //error.setVisibility(View.VISIBLE);
                     }
+
                 };
+
+
 
 
 
