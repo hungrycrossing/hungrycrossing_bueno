@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -28,6 +29,7 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
     String ruta, nom, imatge, imatgereal, ciutat2;
     JSONObject json, jsonObject;
     Bitmap imagen;
+    Bitmap[] array=new Bitmap[100];
     Context cont;
     private String direccioimg="http://hungrycrossing.000webhostapp.com";
 
@@ -41,32 +43,23 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
         this.cont=cont;
     }
 
-    @Override
-    protected void onPostExecute(JSONObject jsonObject) {
-        super.onPostExecute(jsonObject);
 
-        bundle.putInt("state",1);
-        Message msg=new Message();
-        msg.setData(bundle);
-        main_screen.handler.sendMessage(msg);
-
-    }
 
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
-    private void addChild(String nom, String imatgereal, String ciutat3) {
-        String nome,imatgee,city;
+    private void addChild(String nom, Bitmap imatgereal, String ciutat3) {
+        String nome,city;
+        Bitmap imatgee;
         nome=nom;
         imatgee=imatgereal;
         city=ciutat3;
 
         /*Connexio per obtenir imatge*/
-        HttpURLConnection conn=null;
-        try {
+       // HttpURLConnection conn=null;
 
-            URL imageUrl;
+           /* URL imageUrl;
 
             imageUrl=new URL(imatgee);
             conn=(HttpURLConnection)imageUrl.openConnection();
@@ -74,14 +67,12 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
 
             InputStream in=new BufferedInputStream(conn.getInputStream());
             imagen= BitmapFactory.decodeStream(in);
-           // imagen=
+           // imagen=*/
             imgRest=new ImageView(cont);
-            imgRest.setImageBitmap(imagen);
+            imgRest.setImageBitmap(imatgee);
             imgRest.setPadding(10,10,10,10);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
 
 
         /****************************/
@@ -93,9 +84,14 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
         imatge3.setImageResource(R.drawable.foto_perfil_user);
 
         imatge3.setContentDescription(imatgee);*/
-        imgRest.setTop(20);
-        imgRest.setScaleX(0.5f);
-        imgRest.setScaleY(0.5f);
+        //imgRest.setTop(20);
+        //imgRest.setLeft(100);
+        imgRest.setMaxWidth(200);
+        imgRest.setMaxHeight(100);
+        imgRest.setMinimumHeight(100);
+        imgRest.setMinimumWidth(100);
+       // imgRest.setScaleX(100);
+        //imgRest.setScaleY(200);
         TextView tvnomRest=new TextView(cont);
         tvnomRest.setText(nome);
         tvnomRest.setPadding(10,10,10,10);
@@ -129,22 +125,32 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
 
 
                 for(i=0;i<jsonObject.length()-1;i++) {
+
                     // json = jsonObject.getJSONObject("0");
                     json=jsonObject.getJSONObject(""+i+"");
-                    nom = json.getString("Nom");
+                    /*nom = json.getString("Nom");*/
                     imatge=json.getString("Imatge");
                     imatgereal=direccioimg+imatge;
-                    ciutat2=json.getString("NomPob");
-                    addChild(nom,imatgereal,ciutat2);
+                    URL imageUrl;
+
+                    imageUrl=new URL(imatgereal);
+                    conn=(HttpURLConnection)imageUrl.openConnection();
+                    conn.connect();
+
+                    InputStream in=new BufferedInputStream(conn.getInputStream());
+                    imagen= BitmapFactory.decodeStream(in);
+                    array[i]=imagen;
+                   // ciutat2=json.getString("NomPob");
+                    //addChild(nom,imatgereal,ciutat2);
                 }
-            URL imageUrl;
+/*            URL imageUrl;
             imageUrl=new URL(ruta);
             conn=(HttpURLConnection)imageUrl.openConnection();
             conn.connect();
 
             /*InputStream in=new BufferedInputStream(conn.getInputStream());
-            imagen= BitmapFactory.decodeStream(in);*/
-            imagen= BitmapFactory.decodeStream(conn.getInputStream());
+            imagen= BitmapFactory.decodeStream(in);
+            imagen= BitmapFactory.decodeStream(conn.getInputStream());*/
 
            /* bundle.putInt("state",1);
 
@@ -156,8 +162,34 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
         }
         return jsonObject;
     }
-    public Bitmap getBitmap()
+    @Override
+    protected void onPostExecute(JSONObject jsonObject) {
+        super.onPostExecute(jsonObject);
+        int i=0;
+
+
+        for(i=0;i<jsonObject.length()-1;i++) {
+
+            // json = jsonObject.getJSONObject("0");
+            try {
+                json=jsonObject.getJSONObject(""+i+"");
+
+            nom = json.getString("Nom");
+
+             ciutat2=json.getString("NomPob");
+            addChild(nom,array[i],ciutat2);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+       /* bundle.putInt("state",1);
+        Message msg=new Message();
+        msg.setData(bundle);
+        main_screen.handler.sendMessage(msg);*/
+
+    }
+   /* public Bitmap getBitmap()
     {
         return imagen;
-    }
+    }*/
 }

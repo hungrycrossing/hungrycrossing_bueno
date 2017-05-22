@@ -131,10 +131,10 @@ public class main_screen extends AppCompatActivity {
                             final descarregarimg_rest desc=new descarregarimg_rest(json,context2);
                             desc.execute(linear);
 
-                            handler3=new Handler(){
+                            /*handler3=new Handler(){
                                 @Override
                                 public void handleMessage(Message msg) {
-                                    super.handleMessage(msg);
+                                   // super.handleMessage(msg);
                                     if(msg.getData().getInt("state")==1)
                                     {
                                         //Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
@@ -148,7 +148,7 @@ public class main_screen extends AppCompatActivity {
                                     //error.setVisibility(View.VISIBLE);
                                 }
 
-                            };
+                            };*/
                         }
 
 
