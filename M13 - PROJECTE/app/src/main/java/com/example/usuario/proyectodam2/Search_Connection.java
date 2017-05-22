@@ -54,22 +54,6 @@ public class Search_Connection extends AsyncTask<View,Void,JSONObject> {
     @Override
     protected void onPostExecute(JSONObject jsonObject) {
         super.onPostExecute(jsonObject);
-        /*int i=0;
-        try {
-
-            for(i=0;i<jsonObject.length()-1;i++) {
-                // json = jsonObject.getJSONObject("0");
-                json=jsonObject.getJSONObject(""+i+"");
-                nom = json.getString("Nom");
-                imatge=json.getString("Imatge");
-                imatgereal=direccioimg+imatge;
-                ciutat2=json.getString("NomPob");
-                addChild(nom,imatgereal,ciutat2);
-                   } catch (JSONException e) {
-            e.printStackTrace();
-
-        }
-            }*/
         try {
             state=jsonObject.getInt("estado");
         } catch (JSONException e) {

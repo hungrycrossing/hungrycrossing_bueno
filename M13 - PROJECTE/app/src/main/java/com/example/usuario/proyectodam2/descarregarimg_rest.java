@@ -11,6 +11,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -27,6 +28,7 @@ import static com.example.usuario.proyectodam2.main_screen.handler3;
 
 public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
     String ruta, nom, imatge, imatgereal, ciutat2;
+
     JSONObject json, jsonObject;
     Bitmap imagen;
     Bitmap[] array=new Bitmap[100];
@@ -71,11 +73,13 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
             imgRest=new ImageView(cont);
             imgRest.setImageBitmap(imatgee);
             imgRest.setPadding(10,10,10,10);
+        imgRest.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
 
 
 
         /****************************/
+
         LinearLayout layout2=new LinearLayout(cont);
         layout2.setBackgroundResource(R.drawable.border);
         layout2.setOrientation(LinearLayout.HORIZONTAL);
@@ -84,13 +88,14 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
         imatge3.setImageResource(R.drawable.foto_perfil_user);
 
         imatge3.setContentDescription(imatgee);*/
-        //imgRest.setTop(20);
+        //imgRest.setTop(20);.
         //imgRest.setLeft(100);
         imgRest.setMaxWidth(200);
-        imgRest.setMaxHeight(100);
-        imgRest.setMinimumHeight(100);
-        imgRest.setMinimumWidth(100);
-       // imgRest.setScaleX(100);
+        imgRest.setMaxHeight(200);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(500, 500);
+        imgRest.setLayoutParams(layoutParams);
+
+        // imgRest.setScaleX(0.5f);
         //imgRest.setScaleY(200);
         TextView tvnomRest=new TextView(cont);
         tvnomRest.setText(nome);

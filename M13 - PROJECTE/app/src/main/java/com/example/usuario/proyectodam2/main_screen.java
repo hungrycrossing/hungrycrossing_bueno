@@ -37,6 +37,27 @@ public class main_screen extends AppCompatActivity {
         context=this;
         context2=this;
         etSearch=(EditText)(findViewById(R.id.etSearch));
+
+     /*  final Main_Connection conCreate=new Main_Connection(null,null,null,null,0.0f,context);
+        conCreate.execute();
+        handler=new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                if(msg.getData().getInt("state")==1)
+                {
+                    JSONObject jsoncreate=conCreate.getJson();
+                    final descarregarimg_rest desc=new descarregarimg_rest(json,context2);
+                    desc.execute(linear);
+                }
+                else
+                {
+
+                }
+
+            }
+        };*/
+
         // si li donc al botó filtrar del main screen
         Button btfiltres = (Button) (findViewById(R.id.btnFiltros));
         btfiltres.setOnClickListener(new OnClickListener() {
@@ -130,25 +151,6 @@ public class main_screen extends AppCompatActivity {
                             json=connection2.getjson();
                             final descarregarimg_rest desc=new descarregarimg_rest(json,context2);
                             desc.execute(linear);
-
-                            /*handler3=new Handler(){
-                                @Override
-                                public void handleMessage(Message msg) {
-                                   // super.handleMessage(msg);
-                                    if(msg.getData().getInt("state")==1)
-                                    {
-                                        //Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
-                                        //startActivity(main_screen);
-                                        //mostrem la llista de restaurants
-                                        //  json=connection2.getjson();
-                                    }
-
-
-                                    //else
-                                    //error.setVisibility(View.VISIBLE);
-                                }
-
-                            };*/
                         }
 
 
