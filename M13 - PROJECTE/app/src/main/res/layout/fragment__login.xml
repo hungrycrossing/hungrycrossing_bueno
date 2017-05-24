@@ -87,6 +87,8 @@
             android:background="@drawable/border"
             android:textSize="16dp"
             android:padding="10px"
+            android:inputType="textPassword"
+
 
             />
     </LinearLayout>

@@ -59,6 +59,7 @@
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:id="@+id/tvName"/>
             <TextView
                 android:text="Username: "
@@ -80,10 +81,10 @@
                 android:id="@+id/tvPassword"
                 android:layout_marginTop="15dp" />
             <TextView
-                android:text="Confirm Password:"
+                android:text="Confirm:"
                 android:fontFamily="casual"
                 android:textStyle="bold"
-                android:textSize="14sp"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvConfirmpass"
@@ -115,21 +116,24 @@
             android:layout_marginLeft="10dp">
 
             <EditText
-                android:layout_width="100dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="35dp"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+
                 android:padding="10px"
                 android:layout_centerHorizontal="true"
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp"
                 android:id="@+id/etName"
                 android:hint="Introduce Name"
+                android:textColor="#000"
+
                 android:background="@drawable/border"
                 android:textSize="16sp" />
 
             <EditText
-                android:layout_width="100dp"
-                android:layout_height="35dp"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="15dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp"
@@ -139,8 +143,8 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:layout_width="100dp"
-                android:layout_height="35dp"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="15dp"
                 android:id="@+id/etPassword"
                 android:layout_centerHorizontal="true"
@@ -154,8 +158,8 @@
                 android:textSize="16sp"
                 />
             <EditText
-                android:layout_width="100dp"
-                android:layout_height="35dp"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="15dp"
                 android:id="@+id/etConfirmPass"
                 android:textColor="#000"
@@ -170,8 +174,8 @@
 
                 />
             <EditText
-                android:layout_width="100dp"
-                android:layout_height="35dp"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="15dp"
                 android:id="@+id/etMail"
                 android:textColor="#000"
@@ -183,11 +187,13 @@
                 android:background="@drawable/border"
                 android:textSize="16sp"/>
             <EditText
-                android:layout_width="170dp"
-                android:layout_height="35dp"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="15dp"
                 android:id="@+id/etCP"
                 android:hint="Introduce Postal Code"
+                android:textColor="#000"
+
                 android:paddingStart="15dp"
                 android:paddingEnd="10dp"
                 android:background="@drawable/border"
