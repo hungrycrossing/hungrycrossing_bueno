@@ -38,7 +38,7 @@ public class Fragment_Main extends Fragment {
         btFiltres=(Button)getView().findViewById(R.id.btnFiltros);
         btSearch=(Button)getView().findViewById(R.id.btSearch);
         etSearch=(EditText)getView().findViewById(R.id.etSearch);
-        tvInfo=(TextView)getView().findViewById(R.id.tvInfo);
+        //tvInfo=(TextView)getView().findViewById(R.id.tvInfo);
     }
 
 }

@@ -80,6 +80,8 @@ public class main_screen extends AppCompatActivity  implements AdapterView.OnIte
 
             @Override
             public void onClick(View v) {
+                List_Connection list=new List_Connection();
+                list.execute();
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.filters_dialog);
                 dialog.setTitle("Title...");

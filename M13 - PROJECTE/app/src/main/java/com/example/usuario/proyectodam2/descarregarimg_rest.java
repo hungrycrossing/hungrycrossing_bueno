@@ -1,6 +1,7 @@
 package com.example.usuario.proyectodam2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -18,6 +19,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -32,6 +36,8 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
     String ruta, nom, imatge, imatgereal, ciutat2;
 
     JSONObject json, jsonObject;
+     Bitmap imatgee;
+     String nome,city;
     Bitmap imagen;
     Bitmap[] array=new Bitmap[100];
     Context cont;
@@ -55,8 +61,8 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
         super.onProgressUpdate(values);
     }
     private void addChild(String nom, Bitmap imatgereal, String ciutat3) {
-        String nome,city;
-        Bitmap imatgee;
+        final String nome,city;
+        final Bitmap imatgee;
         nome=nom;
         imatgee=imatgereal;
         city=ciutat3;
@@ -120,7 +126,38 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
 
 
         layout2.setClickable(true);//per accedir a la pagina del restaurnat individual
+        layout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                String filename = "restaurant.png";
+                FileOutputStream stream = null;
+                try {
+                    stream = cont.openFileOutput(filename, Context.MODE_PRIVATE);
+                    imatgee.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+
+                //Cleanup
+                try {
+                    stream.close();
+                    imatgee.recycle();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                bundle.putString("img",filename);
+                bundle.putString("nomRest",nome);
+                bundle.putString("nomCiutat",city);
+
+                Intent restaurant_screen = new Intent(cont, restaurant_screen.class);
+                restaurant_screen.putExtras(bundle);
+                cont.startActivity(restaurant_screen);
+
+            }
+        });
         layoutimportant2.addView(layout2);
 
     }

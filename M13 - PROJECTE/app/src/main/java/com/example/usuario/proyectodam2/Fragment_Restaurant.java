@@ -20,7 +20,7 @@ import android.widget.TextView;
 public class Fragment_Restaurant extends Fragment {
     private Button btSend;
     private EditText etComentario;
-    private TextView tvNomRest,tvTelf,tvCorreu,tvInfo,tvComentario,tvRating,tvOpiniones,tvOpinion;
+    private TextView tvNomRest,tvZona,tvPoblacio,tvDireccio,tvComentario,tvRating,tvOpiniones,tvOpinion;
     private ImageView imgRest;
     private RatingBar rBar;
 
@@ -42,13 +42,13 @@ public class Fragment_Restaurant extends Fragment {
         imgRest=(ImageView)getView().findViewById(R.id.imgRest);
         rBar=(RatingBar) getView().findViewById(R.id.rBar1);
         tvNomRest=(TextView)getView().findViewById(R.id.tvNomRest);
-        tvTelf=(TextView)getView().findViewById(R.id.tvTelf);
-        tvCorreu=(TextView)getView().findViewById(R.id.tvCorreu);
-        tvInfo=(TextView)getView().findViewById(R.id.tvInfo);
+        tvZona=(TextView)getView().findViewById(R.id.tvZona);
+        tvPoblacio=(TextView)getView().findViewById(R.id.tvPoblacio);
+        tvDireccio=(TextView)getView().findViewById(R.id.tvDireccio);
         tvComentario=(TextView)getView().findViewById(R.id.tvComentario);
         tvRating=(TextView)getView().findViewById(R.id.tvRating);
         tvOpiniones=(TextView)getView().findViewById(R.id.tvOpiniones);
-        tvOpinion=(TextView)getView().findViewById(R.id.tvOpinion);
+       // tvOpinion=(TextView)getView().findViewById(R.id.tvOpinion);
         etComentario=(EditText)getView().findViewById(R.id.etComentario);
     }
 
