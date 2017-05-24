@@ -1,5 +1,6 @@
 package com.example.usuario.proyectodam2;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -21,10 +22,11 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
     private EditText etUsername;
     private EditText etPssw;
     private String pass,username;
+    MailConnection mailcon;
     TextView error;
     public static int status;
     HTTPConnection connection;
-    public static Handler handler;
+    public static Handler handler, handlermail;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +52,39 @@ public class login_screen extends AppCompatActivity implements View.OnClickListe
                         super.handleMessage(msg);
                         if(msg.getData().getInt("state")==1)
                         {
-                            Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
-                            startActivity(main_screen);
-                            finish();
-                            //pasem a la pagina principal
+                            mailcon = new MailConnection(username);
+                            mailcon.execute();
+
+                            handlermail = new Handler() {
+                                @Override
+                                public void handleMessage(Message msg) {
+                                    super.handleMessage(msg);
+                                    if(msg.getData().getInt("state")==2){
+                                        // If Mail is not confirmed
+                                        final Dialog dialog = new Dialog(login_screen.this);
+                                        dialog.setContentView(R.layout.notcorfirmed_dialog);
+                                        dialog.setTitle("e-Mail not confirmed");
+                                        dialog.show();
+
+                                        Button btOk = (Button) dialog.findViewById(R.id.btnOkmail);
+
+                                        btOk.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        Intent main_screen = new Intent(getApplicationContext(), main_screen.class);
+                                        startActivity(main_screen);
+
+                                        finish();
+                                        //pasem a la pagina principal
+                                    }
+                                }
+                            };
+
                         }
                         else
                             error.setVisibility(View.VISIBLE);

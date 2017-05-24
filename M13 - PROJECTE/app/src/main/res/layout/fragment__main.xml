@@ -20,13 +20,11 @@
         android:weightSum="1"
 
         android:orientation="horizontal">
-        <ImageView
+        <Spinner
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:srcCompat="@drawable/foto_perfil_user"
-            android:id="@+id/imageView"
-            android:layout_alignParentTop="true"
-            />
+            android:background="@drawable/foto_perfil_user"
+            android:id="@+id/spinner" />
         <EditText
 
             android:layout_width="0dp"
@@ -59,6 +57,17 @@
         android:text="Filters"
         android:id="@+id/btnFiltros"
         />
+    <Button
+        android:layout_toRightOf="@id/btnFiltros"
+        android:layout_below="@id/layout"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/button"
+        android:layout_height="40dp"
+        android:text="Ruta"
+        android:layout_width="wrap_content"
+        android:id="@+id/btnRuta"
+         />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

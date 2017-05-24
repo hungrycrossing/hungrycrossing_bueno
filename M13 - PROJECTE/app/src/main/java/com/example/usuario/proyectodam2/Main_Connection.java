@@ -60,13 +60,13 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
     protected void onPostExecute(JSONObject jsonObject) {
         super.onPostExecute(jsonObject);
 
-        try {
+       /* try {
             state=jsonObject.getInt("estado");
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
 
-        bundle.putInt("state",state);
+        bundle.putInt("state",1);
         Log.d("Avis","FI pst execute ");
             Message msg=new Message();
             msg.setData(bundle);
@@ -187,7 +187,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
            //url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php");
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection)url.openConnection();
-            int status = urlConnection.getResponseCode();
+            //int status = urlConnection.getResponseCode();
 
 
             urlConnection.setRequestMethod("GET");

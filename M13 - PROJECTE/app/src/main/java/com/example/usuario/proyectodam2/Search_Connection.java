@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 
 import static com.example.usuario.proyectodam2.main_screen.handler2;
 
@@ -54,13 +55,13 @@ public class Search_Connection extends AsyncTask<View,Void,JSONObject> {
     @Override
     protected void onPostExecute(JSONObject jsonObject) {
         super.onPostExecute(jsonObject);
-        try {
+       /* try {
             state=jsonObject.getInt("estado");
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
 
-        bundle.putInt("state",state);
+        bundle.putInt("state",1);
             Message msg=new Message();
             msg.setData(bundle);
             handler2.sendMessage(msg);
@@ -77,7 +78,7 @@ public class Search_Connection extends AsyncTask<View,Void,JSONObject> {
             url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurant_Search.php?nom="+nomRest);
             HttpURLConnection urlConnection=null;
             urlConnection = (HttpURLConnection)url.openConnection();
-            int status = urlConnection.getResponseCode();
+            //int status = urlConnection.getResponseCode();
 
             urlConnection.setRequestMethod("GET");//DUDA
             urlConnection.setReadTimeout(10000 /* milliseconds */);
@@ -101,7 +102,7 @@ public class Search_Connection extends AsyncTask<View,Void,JSONObject> {
             }
             br.close();
             json= new JSONObject(sb.toString());
-
+            urlConnection.disconnect();
             //System.out.println("JSON: " + jsonString);
         } catch (IOException | JSONException e) {
             e.printStackTrace();

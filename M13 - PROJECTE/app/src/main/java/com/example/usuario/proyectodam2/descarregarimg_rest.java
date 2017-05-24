@@ -21,6 +21,8 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+
 import static com.example.usuario.proyectodam2.main_screen.handler3;
 /**
  * Created by usuario on 19/05/2017.
@@ -34,7 +36,8 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
     Bitmap[] array=new Bitmap[100];
     Context cont;
     private String direccioimg="http://hungrycrossing.000webhostapp.com";
-
+    Double latitud, longitud;
+    public ArrayList<localizaciones> coord=new ArrayList<localizaciones>();
     Bundle bundle=new Bundle();
     ImageView imgRest;
 
@@ -182,7 +185,10 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
             nom = json.getString("Nom");
 
              ciutat2=json.getString("NomPob");
-            addChild(nom,array[i],ciutat2);
+                latitud=json.getDouble("Latitud");
+                longitud=json.getDouble("Longitud");
+                addChild(nom,array[i],ciutat2);
+                coord.add(new localizaciones(nom, latitud, longitud));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -16,14 +17,22 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 
 import org.json.JSONObject;
 
-public class main_screen extends AppCompatActivity {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class main_screen extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
     //final Context context = this;
     String zona,esp,nomRest;
     private EditText etSearch;
     public static Handler handler,handler2, handler3;
+    ArrayList<localizaciones> cord=new ArrayList<>();
+    ArrayList<Double> lats=new ArrayList<>();
+    ArrayList<Double> longs=new ArrayList<>();
+    ArrayList<String> noms=new ArrayList<>();
     public Context context,context2;
     public LinearLayout linear,linear2;
     private JSONObject json;
@@ -31,6 +40,13 @@ public class main_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+        String [] values = {"My Profile","Settings","Log out"};
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
+        LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(LTRadapter);
+        spinner.setOnItemSelectedListener(this);
 
         linear=(LinearLayout) findViewById(R.id.layoutImportant);
         //linear2=(LinearLayout) findViewById(R.id.layoutImportant);
@@ -97,7 +113,7 @@ public class main_screen extends AppCompatActivity {
                         //primero de toddo llamaré a la clase para conectarse con el php de filtros el cual me
                         //va a devolver un json con la lista de restaurantes segun los filtros que yo le indique
                         float[] punts = new float[]{ rb1.getRating() };
-                        Main_Connection connection=new Main_Connection(null,zona,esp,null,punts[0],context);
+                        final Main_Connection connection=new Main_Connection(null,zona,esp,null,punts[0],context);
                         //Main_Connection connection=new Main_Connection("Martorelles","Montanya","Xines","Hola",punts[0]);
                         connection.execute(linear);
                         handler=new Handler(){
@@ -106,7 +122,12 @@ public class main_screen extends AppCompatActivity {
                                 super.handleMessage(msg);
                                 if(msg.getData().getInt("state")==1)
                                 {
+
                                    // JSONObject json=connection.getJson();
+                                    json=connection.getJson();
+                                    final descarregarimg_rest desc=new descarregarimg_rest(json,context2);
+                                    desc.execute(linear);
+                                    cord=desc.coord;
 
                                 }
                                 else
@@ -151,22 +172,68 @@ public class main_screen extends AppCompatActivity {
                             json=connection2.getjson();
                             final descarregarimg_rest desc=new descarregarimg_rest(json,context2);
                             desc.execute(linear);
+                           cord=desc.coord;
                         }
-
-
                         //else
                             //error.setVisibility(View.VISIBLE);
                     }
 
+
                 };
+            }
+        });
+        Button btRuta = (Button) (findViewById(R.id.btnRuta));
+        btRuta.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // ruta_screen ruta=new ruta_screen(coord);
+
+                //bundle.putArrayLis
+                //ruta_screen ruta=new ruta_screen();
+                //ruta.coord=coord;
+                for(int x=0;x<cord.size();x++) {
+                    lats.add(cord.get(x).lat);
+                    longs.add(cord.get(x).lon);
+                    noms.add(cord.get(x).nom);
+                }
+                Intent rut = new Intent(getApplicationContext(), ruta_screen.class);
+                Bundle bundle=new Bundle();
+
+                bundle.putSerializable("la", (Serializable) lats);
+                bundle.putSerializable("lo", (Serializable) longs);
+                bundle.putSerializable("no", (Serializable) noms);
 
 
-
-
-
+                rut.putExtras(bundle);
+                startActivity(rut);
+                //ruta.coord=coord;
 
             }
         });
+    }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch(parent.getSelectedItem().toString()) {
+            case ("My Profile"):
+                break;
+            case ("Settings"):
+                break;
+            case ("Log out"):
+                Intent login_screen = new Intent(getApplicationContext(), login_screen.class);
+                startActivity(login_screen);
+
+                this.finish();
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    public Context getActivity() {
+        return this;
+    }
+
 }
