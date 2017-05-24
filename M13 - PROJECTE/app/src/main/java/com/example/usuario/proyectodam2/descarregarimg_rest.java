@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -110,6 +111,10 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
         tvnomRest.setText(nome);
         tvnomRest.setPadding(10,10,10,10);
         TextView tvnomCiutat=new TextView(cont);
+        RelativeLayout.LayoutParams l2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        l2.addRule(RelativeLayout.BELOW, R.id.tvNomRest);
+        tvnomCiutat.setLayoutParams(l2);
         tvnomCiutat.setText(city);
         tvnomCiutat.setPadding(10,10,10,10);
 
