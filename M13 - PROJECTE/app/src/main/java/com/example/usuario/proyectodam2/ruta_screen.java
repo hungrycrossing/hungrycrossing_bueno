@@ -93,7 +93,7 @@ public class ruta_screen extends FragmentActivity implements OnMapReadyCallback,
         punts.execute(mMap);
       // CameraPosition cameraPosition = new CameraPosition.Builder()
                 //.target(lats.get(0),longs.get(0))      // Sets the center of the map to Mountain View
-        //        .zoom(20);              // Sets the zoom
+        //        .zoom(20);              // Sets the zoomw
                // .bearing(90)                // Sets the orientation of the camera to east
                 //.tilt(30)                   // Sets the tilt of the camera to 30 degrees
                 //.build();                   // Creates a CameraPosition from the builder
@@ -104,20 +104,36 @@ public class ruta_screen extends FragmentActivity implements OnMapReadyCallback,
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), longs.get(0)), 16.0f));
         Polyline line= mMap.addPolyline(new PolylineOptions()
-            .add(new LatLng(lats.get(0),longs.get(0)),new  LatLng(lats.get(1),longs.get(1)))
+                .add(new LatLng(lats.get(0),longs.get(0)),new  LatLng(lats.get(1),longs.get(1)),new  LatLng(lats.get(2),longs.get(2)),new  LatLng(lats.get(3),longs.get(3)),new  LatLng(lats.get(4),longs.get(4)))
                 // LatLng(lats.get(2),longs.get(2),  LatLng(lats.get(3),longs.get(3),  LatLng(lats.get(4),longs.get(4)))
-                .width(5)
-                .color(Color.CYAN));
+                .width(6)
 
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        Polyline line= mMap.addPolyline(new PolylineOptions()
+       /* Polyline line= mMap.addPolyline(new PolylineOptions()
                 .add(new LatLng(lats.get(0),longs.get(0)),new  LatLng(lats.get(1),longs.get(1)))
                 // LatLng(lats.get(2),longs.get(2),  LatLng(lats.get(3),longs.get(3),  LatLng(lats.get(4),longs.get(4)))
                 .width(5)
-                .color(Color.CYAN));
+                .color(Color.CYAN));*/
+        if(lats.size()==2)
+        {
+            Polyline line= mMap.addPolyline(new PolylineOptions()
+                    .add(new LatLng(lats.get(0),longs.get(0)),new  LatLng(lats.get(1),longs.get(1)))
+                    // LatLng(lats.get(2),longs.get(2),  LatLng(lats.get(3),longs.get(3),  LatLng(lats.get(4),longs.get(4)))
+                    .width(5)
+                    .color(Color.CYAN));
+        }
+        else
+        if(lats.size()==3)
+        {
+            Polyline line= mMap.addPolyline(new PolylineOptions()
+                    .add(new LatLng(lats.get(0),longs.get(0)),new  LatLng(lats.get(1),longs.get(1)),new  LatLng(lats.get(2),longs.get(2)))
+                    // LatLng(lats.get(2),longs.get(2),  LatLng(lats.get(3),longs.get(3),  LatLng(lats.get(4),longs.get(4)))
+                    .width(5)
+                    .color(Color.CYAN));
+        }
     }
 
     @Override

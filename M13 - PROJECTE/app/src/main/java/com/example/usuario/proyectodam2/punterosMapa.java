@@ -64,7 +64,7 @@ public class punterosMapa  extends AsyncTask<GoogleMap,Void,JSONArray> {
                 points.add(position);//guardem la posicio del marker en un array de punts per a dibuixar les linies entre ells
 
         }}
-        if(latitud.size()==2)
+        /*if(latitud.size()==2)
         {
             Polyline line= map.addPolyline(new PolylineOptions()
                     .add(new LatLng(latitud.get(0),longitud.get(0)),new  LatLng(latitud.get(1),longitud.get(1)))
@@ -80,7 +80,7 @@ public class punterosMapa  extends AsyncTask<GoogleMap,Void,JSONArray> {
                     // LatLng(lats.get(2),longs.get(2),  LatLng(lats.get(3),longs.get(3),  LatLng(lats.get(4),longs.get(4)))
                     .width(5)
                     .color(Color.CYAN));
-        }
+        }*/
     }
 
     @Override
