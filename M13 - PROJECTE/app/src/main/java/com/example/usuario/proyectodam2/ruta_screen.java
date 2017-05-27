@@ -106,7 +106,7 @@ public class ruta_screen extends FragmentActivity implements OnMapReadyCallback,
         Polyline line= mMap.addPolyline(new PolylineOptions()
                 .add(new LatLng(lats.get(0),longs.get(0)),new  LatLng(lats.get(1),longs.get(1)),new  LatLng(lats.get(2),longs.get(2)),new  LatLng(lats.get(3),longs.get(3)),new  LatLng(lats.get(4),longs.get(4)))
                 // LatLng(lats.get(2),longs.get(2),  LatLng(lats.get(3),longs.get(3),  LatLng(lats.get(4),longs.get(4)))
-                .width(6)
+                .width(6));
 
     }
 

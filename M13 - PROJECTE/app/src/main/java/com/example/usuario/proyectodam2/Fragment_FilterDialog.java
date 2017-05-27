@@ -10,15 +10,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.List;
 
 
 public class Fragment_FilterDialog extends DialogFragment {
     private TextView tvTitol,tvZona,tvEspecialitats,tvRating;
-    private ListView lvZona,lvEspecialitats;
+
     private RatingBar rbar;
     private Button btFiltre;
-
+    private ListView lvEspecialitats,lvCiutats,lvZona;
+    private Spinner spEspecialitats,spCiutats,spZona;
     public Fragment_FilterDialog() {
         // Required empty public constructor
     }
@@ -28,8 +32,10 @@ public class Fragment_FilterDialog extends DialogFragment {
         super.onActivityCreated(savedInstanceState);
         btFiltre=(Button)getView().findViewById(R.id.btFiltrarJa);
         rbar=(RatingBar)getView().findViewById(R.id.rBar1);
-        lvZona=(ListView)getView().findViewById(R.id.lv1);
-        lvEspecialitats=(ListView)getView().findViewById(R.id.lv2);
+
+        spEspecialitats=(Spinner) getView().findViewById(R.id.sp2);
+        spZona=(Spinner)getView().findViewById(R.id.sp1);
+        spCiutats=(Spinner)getView().findViewById(R.id.sp3);
         tvTitol=(TextView)getView().findViewById(R.id.titol);
         tvZona=(TextView)getView().findViewById(R.id.zona);
         tvEspecialitats=(TextView)getView().findViewById(R.id.tipos);

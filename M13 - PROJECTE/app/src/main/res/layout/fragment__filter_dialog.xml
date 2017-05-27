@@ -36,15 +36,13 @@ tools:context="com.example.usuario.proyectodam2.Fragment_FilterDialog">
             android:layout_below="@+id/titol"
             android:layout_marginTop="20px"
             />
-        <ListView
+        <Spinner
             android:layout_width="wrap_content"
-            android:layout_height="60px"
-            android:layout_toRightOf="@+id/zona"
-            android:layout_below="@+id/titol"
+            android:layout_height="20dp"
+            android:id="@+id/sp1"
+            ></Spinner>
 
-            android:id="@+id/lv1">
 
-        </ListView>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -64,16 +62,11 @@ tools:context="com.example.usuario.proyectodam2.Fragment_FilterDialog">
 
 
             />
-        <ListView
+        <Spinner
             android:layout_width="wrap_content"
-            android:layout_height="60px"
-            android:layout_toRightOf="@+id/tipos"
-            android:layout_below="@+id/zona"
-
-
-            android:id="@+id/lv2">
-
-        </ListView>
+            android:layout_height="20dp"
+            android:id="@+id/sp2"
+            ></Spinner>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -93,11 +86,10 @@ tools:context="com.example.usuario.proyectodam2.Fragment_FilterDialog">
 
 
             />
-        <ListView
+        <Spinner
             android:layout_width="wrap_content"
-            android:layout_height="60px"
-            android:layout_toRightOf="@+id/tipos"
-            android:id="@+id/lv3"/>
+            android:layout_height="20dp"
+            android:id="@+id/sp3"></Spinner>
 
     </LinearLayout>
 

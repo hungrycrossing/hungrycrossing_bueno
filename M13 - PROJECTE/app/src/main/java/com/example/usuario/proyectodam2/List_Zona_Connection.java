@@ -22,16 +22,16 @@ import java.net.URL;
 import com.example.usuario.proyectodam2.main_screen;
 
 import static com.example.usuario.proyectodam2.main_screen.handler;
-import static com.example.usuario.proyectodam2.main_screen.handler4;
+import static com.example.usuario.proyectodam2.main_screen.handler5;
 /**
  * Created by Bernat on 24/05/2017.
  */
-public class List_Connection extends AsyncTask<View,Void,JSONObject> {
-    public String[] ciutats=new String[100];
+public class List_Zona_Connection extends AsyncTask<View,Void,JSONObject> {
+    public String[] zonas=new String[100];
     JSONObject json, jsonObject;
     Bundle bundle=new Bundle();
 
-    public List_Connection(){
+    public List_Zona_Connection(){
 
     }
 
@@ -39,7 +39,7 @@ public class List_Connection extends AsyncTask<View,Void,JSONObject> {
     protected JSONObject doInBackground(View... view) {
         URL url = null;
         try {
-            url = new URL("http://hungrycrossing.000webhostapp.com/Retorna_Ciutats.php");
+            url = new URL("http://hungrycrossing.000webhostapp.com/Retorna_Zona.php");
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection)url.openConnection();
             int status = urlConnection.getResponseCode();
@@ -88,14 +88,14 @@ public class List_Connection extends AsyncTask<View,Void,JSONObject> {
                 json=jsonObject.getJSONObject(""+i+"");
 
 
-                ciutats[i]=json.get("NomPob").toString();
-                main_screen.ciutats[i]=ciutats[i];
+                zonas[i]=json.get("Nom").toString();
+                main_screen.zonass[i]=zonas[i];
             }
             bundle.putInt("state",1);
             Log.d("Avis","FI pst execute ");
             Message msg=new Message();
             msg.setData(bundle);
-            handler4.sendMessage(msg);
+            handler5.sendMessage(msg);
         } catch (JSONException e) {
             e.printStackTrace();
         }
