@@ -82,7 +82,8 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
            // imagen=*/
             imgRest=new ImageView(cont);
             imgRest.setImageBitmap(imatgee);
-            imgRest.setPadding(10,10,10,10);
+            imgRest.setPadding(10,5,0,0);
+
         imgRest.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
 
@@ -91,18 +92,24 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
         /****************************/
 
         LinearLayout layout2=new LinearLayout(cont);
+        LinearLayout.LayoutParams layoutParams1=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams1.setMargins(0,2,0,2);
+        layout2.setLayoutParams(layoutParams1);
         layout2.setBackgroundResource(R.drawable.border);
-        layout2.setOrientation(LinearLayout.HORIZONTAL);
+        layout2.setOrientation(LinearLayout.VERTICAL);
         /*ImageView imatge3=new ImageView(cont);
 
         imatge3.setImageResource(R.drawable.foto_perfil_user);
 
         imatge3.setContentDescription(imatgee);*/
         //imgRest.setTop(20);.
-        //imgRest.setLeft(100);
-        imgRest.setMaxWidth(200);
-        imgRest.setMaxHeight(200);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(500, 500);
+
+        /*imgRest.setMaxWidth(200);
+        imgRest.setMaxHeight(200);*/
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(640, 400);
+        //AFEGIR MARGIN A LA FOTO
+        layoutParams.setMargins(2,2,0,0);
+
         imgRest.setLayoutParams(layoutParams);
 
         // imgRest.setScaleX(0.5f);
@@ -125,7 +132,9 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
 
         layout2.setBackgroundColor(Color.rgb(255, 168, 43));
         layout2.setGravity(2);
-        layout2.setMinimumWidth(700);
+
+
+        layout2.setMinimumWidth(750);
         layout2.setMinimumHeight(300);
         layout2.setBackgroundResource(R.drawable.border2);
 

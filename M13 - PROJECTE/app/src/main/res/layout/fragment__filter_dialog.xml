@@ -32,7 +32,7 @@ tools:context="com.example.usuario.proyectodam2.Fragment_FilterDialog">
             android:paddingTop="0px"
             android:layout_marginLeft="20px"
             android:textSize="40px"
-            android:text="Zona: "
+            android:text="Zone: "
             android:layout_below="@+id/titol"
             android:layout_marginTop="20px"
             />
@@ -127,7 +127,7 @@ tools:context="com.example.usuario.proyectodam2.Fragment_FilterDialog">
     android:layout_width="200px"
     android:layout_height="70px"
     android:layout_gravity="center"
-    android:text="Filtrar"
+    android:text="Filter"
     android:id="@+id/btFiltrarJa"
     android:layout_below="@+id/layout4"
     android:background="@drawable/button"

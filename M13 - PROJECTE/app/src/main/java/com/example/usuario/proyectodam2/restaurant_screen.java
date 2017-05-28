@@ -141,8 +141,11 @@ public  class restaurant_screen extends AppCompatActivity {
         tvNomRest.setTextSize(20f);
         tvPoblacio.setText(var3+nomCiutat);
         tvZona.setText(var4+zona);
+        LinearLayout.LayoutParams layoutParams2=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams2.setMargins(-5,0,0,0);
         tvDireccio.setText(var2+direccio);
-        tvDireccio.setPadding(8,0,0,0);
+        //tvDireccio.setPadding(-5,0,0,0);
+        tvDireccio.setLayoutParams(layoutParams2);
         imgRest.setImageBitmap(imatge);
         imgRest.setMaxHeight(160);
         imgRest.setMaxWidth(150);
@@ -151,7 +154,11 @@ public  class restaurant_screen extends AppCompatActivity {
         {
             TextView tv=new TextView(this);
             tv.setText(opiniones[i]);
+            LinearLayout.LayoutParams layoutParams1=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams1.setMargins(0,5,0,5);
+            tv.setLayoutParams(layoutParams1);
             linOpin.addView(tv);
+
             i++;
         }
 

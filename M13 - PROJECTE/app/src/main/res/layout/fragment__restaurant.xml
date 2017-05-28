@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text=" Zona: "
+                    android:text=" Zone: "
                     android:id="@+id/tvZona"
 
                     android:textAlignment="center"/>
@@ -57,14 +57,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
-                    android:text=" Direccio: "
+                    android:text=" Address: "
                     android:id="@+id/tvDireccio"
 
                     android:textAlignment="center"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" Poblacio: "
+                    android:text=" Population: "
                     android:layout_marginTop="10sp"
                     android:id="@+id/tvPoblacio"
                     android:textAlignment="center"/>
@@ -76,6 +76,7 @@
                 android:id="@+id/layout2"
                 android:layout_below="@+id/imgRest"
                 android:layout_marginTop="10sp"
+                android:layout_marginLeft="-15dp"
                 android:padding="@dimen/activity_horizontal_margin">
 
 
@@ -84,7 +85,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvComentario"
-                    android:text="Deja tu comentario: "
+
+                    android:text="Leave a comment: "
 
                     />
                 <EditText
@@ -92,13 +94,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5sp"
                     android:id="@+id/etComentario"
-                    android:hint="Introduzca el comentario"
+                    android:hint="Enter your comment"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvRating"
-                    android:text="Valora el restaurante: "
+                    android:layout_marginTop="5px"
+                    android:text="Rate the restaurant: "
 
                     />
                 <RatingBar
@@ -107,6 +110,7 @@
                     android:id="@+id/rBar1"
                     android:layout_marginLeft="20px"
                     android:layout_marginTop="15px"
+                    android:layout_gravity="center"
                     android:numStars="5"
 
                     android:layout_below="@+id/tvRating"
@@ -121,7 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button"
-                        android:text="Enviar"
+                        android:text="Send"
                         android:gravity="center"
                         android:id="@+id/btSend"
                         android:layout_gravity="center"
@@ -142,7 +146,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Opiniones:"
+                android:text="Reviews:"
                 android:id="@+id/tvOpiniones"
                 android:layout_below="@+id/layout2"/>
 
