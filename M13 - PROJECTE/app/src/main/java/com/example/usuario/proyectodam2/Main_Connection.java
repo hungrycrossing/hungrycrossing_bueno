@@ -28,6 +28,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
+
 import static com.example.usuario.proyectodam2.main_screen.handler;
 
 
@@ -77,11 +79,11 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
     protected JSONObject doInBackground(View... view) {
         //layoutimportant= (LinearLayout) view[0];
         URL url = null;
-        try {
+        /*try {
             url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php");
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
+        }*/
         try {
             if(ciutat!=null)
             {
@@ -90,21 +92,26 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                     if(esp1!=null)
                     {
                         if(puntos==0f) {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona +"&esp1="+esp1);
+
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat="+URLEncoder.encode(ciutat,"UTF-8")+"&zona="+URLEncoder.encode(zona,"UTF-8")+"&esp1="+URLEncoder.encode(esp1,"UTF-8");
+                            url = new URL(url2);
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona +"&esp1="+esp1+"&valoracio="+puntos);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat="+URLEncoder.encode(ciutat,"UTF-8")+"&zona="+URLEncoder.encode(zona,"UTF-8")+"&esp1="+URLEncoder.encode(esp1,"UTF-8")+"&valoracio="+puntos;
+                            url = new URL(url2);
                         }
                     }
                     if(esp1==null)
                     {
                         if(puntos==0f) {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" +URLEncoder.encode(ciutat,"UTF-8")+ "&zona=" + URLEncoder.encode(zona,"UTF-8");
+                            url = new URL(url2);
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona+"&valoracio="+puntos);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + URLEncoder.encode(ciutat,"UTF-8") + "&zona=" + URLEncoder.encode(zona,"UTF-8")+"&valoracio="+puntos;
+                            url = new URL(url2);
                         }
                     }
                 }
@@ -113,21 +120,25 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                     if(esp1!=null)
                     {
                         if(puntos==0f) {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat+"&esp1="+esp1);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + URLEncoder.encode(ciutat,"UTF-8")+"&esp1="+URLEncoder.encode(esp1,"UTF-8");
+                            url = new URL(url2);
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat+"&esp1="+esp1+"&valoracio="+puntos);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" +  URLEncoder.encode(ciutat,"UTF-8")+"&esp1="+URLEncoder.encode(esp1,"UTF-8")+"&valoracio="+puntos;
+                            url = new URL(url2);
                         }
                     }
                     if(esp1==null)
                     {
                         if(puntos==0f) {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + URLEncoder.encode(ciutat,"UTF-8");
+                            url = new URL(url2);
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat+"&valoracio="+puntos);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + URLEncoder.encode(ciutat,"UTF-8")+"&valoracio="+puntos;
+                            url = new URL(url2);
                         }
                     }
                 }
@@ -139,21 +150,25 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                     if(esp1!=null)
                     {
                         if(puntos==0f) {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona +"&esp1="+esp1);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" +  URLEncoder.encode(zona,"UTF-8") +"&esp1="+ URLEncoder.encode(esp1,"UTF-8");
+                            url = new URL(url2);
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona +"&esp1="+esp1+"&valoracio="+puntos);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + URLEncoder.encode(zona,"UTF-8") +"&esp1="+URLEncoder.encode(esp1,"UTF-8")+"&valoracio="+puntos;
+                            url = new URL(url2);
                         }
                     }
                     if(esp1==null)
                     {
                         if(puntos==0f) {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + URLEncoder.encode(zona,"UTF-8");
+                            url = new URL(url2);
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + zona +"&valoracio="+puntos);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?zona=" + URLEncoder.encode(zona,"UTF-8") +"&valoracio="+puntos;
+                            url = new URL(url2);
                         }
                     }
                 }
@@ -162,29 +177,35 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
                     if(esp1!=null)
                     {
                         if(puntos==0f) {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?esp1="+esp1);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?esp1="+URLEncoder.encode(esp1,"UTF-8");
+                            url = new URL(url2);
 
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?esp1="+esp1+"&valoracio="+puntos);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?esp1="+URLEncoder.encode(esp1,"UTF-8")+"&valoracio="+puntos;
+                            url = new URL(url2);
 
                         }
                     }
                     if(esp1==null)
                     {
                         if(puntos==0f) {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php");
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php";
+                            url = new URL(url2);
                         }
                         else
                         {
-                            url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?valoracio="+puntos);
+                            String url2="http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?valoracio="+puntos;
+                            url = new URL(url2);
                         }
                     }
                 }
             }
-            //url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=" + ciutat + "&zona=" + zona +"&esp1="+esp1+"&esp2="+esp2+"&valoracio="+punts);
+
+           // url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php?ciutat=Granollers&zona=Centre ciutat&esp1=Cuina Catalana");
            //url = new URL("http://hungrycrossing.000webhostapp.com/Consultar_Restaurants.php");
+
             HttpURLConnection urlConnection = null;
             urlConnection = (HttpURLConnection)url.openConnection();
             //int status = urlConnection.getResponseCode();
@@ -196,7 +217,7 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
 
             //urlConnection.setDoOutput(true);
 
-            urlConnection.connect();
+            urlConnection.connect();//COMENTAAAAAAAAAAAAAAAAAAT
 
             BufferedReader br=new BufferedReader(new InputStreamReader(url.openStream()));
 
@@ -211,7 +232,8 @@ public class Main_Connection  extends AsyncTask<View,Void,JSONObject> {
             }
             br.close();
             json= new JSONObject(sb.toString());
-            System.out.println("JSON: " + jsonString);
+            urlConnection.disconnect();
+           // System.out.println("JSON: " + jsonString);
 
 
         } catch (JSONException | IOException e) {

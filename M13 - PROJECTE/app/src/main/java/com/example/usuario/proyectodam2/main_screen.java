@@ -50,7 +50,7 @@ public class main_screen extends AppCompatActivity implements AdapterView.OnItem
 
     public Context context, context2;
     public LinearLayout linear, linear2;
-    private JSONObject json;
+    private JSONObject json,json2;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -238,6 +238,7 @@ public class main_screen extends AppCompatActivity implements AdapterView.OnItem
                         //primero de toddo llamaré a la clase para conectarse con el php de filtros el cual me
                         //va a devolver un json con la lista de restaurantes segun los filtros que yo le indique
                         float[] punts = new float[]{rb1.getRating()};
+                        //IGUAL ES EL CONTEXT QUE ES CONTEXT 2
                         final Main_Connection connection = new Main_Connection(ciutat, zona, esp, null, punts[0], context);
                         //Main_Connection connection=new Main_Connection("Martorelles","Montanya","Xines","Hola",punts[0]);
                         connection.execute(linear);
@@ -248,8 +249,8 @@ public class main_screen extends AppCompatActivity implements AdapterView.OnItem
                                 if (msg.getData().getInt("state") == 1) {
 
                                     // JSONObject json=connection.getJson();
-                                    json = connection.getJson();
-                                    final descarregarimg_rest desc = new descarregarimg_rest(json, context2);
+                                    json2 = connection.getJson();
+                                    final descarregarimg_rest desc = new descarregarimg_rest(json2, context2);
                                     desc.execute(linear);
                                     cord = desc.coord;
 
@@ -260,7 +261,7 @@ public class main_screen extends AppCompatActivity implements AdapterView.OnItem
                             }
                         };
                         //J
-                        JSONObject json = connection.getJson();
+                        //JSONObject json = connection.getJson();
                         dialog.dismiss();
 
 

@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -219,13 +220,13 @@ public class descarregarimg_rest extends AsyncTask<View,Void,JSONObject> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return jsonObject;
+        return jsonObject;/// igual es json
     }
     @Override
     protected void onPostExecute(JSONObject jsonObject) {
         super.onPostExecute(jsonObject);
         int i=0;
-
+        Log.d("JsonObject",jsonObject.toString());
 
         for(i=0;i<jsonObject.length()-1;i++) {
 
